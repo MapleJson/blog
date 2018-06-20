@@ -16,6 +16,7 @@ Route::group([
         'auth/users' => UserController::class,
         'blog'       => BlogController::class,
         'tags'       => TagController::class,
+        'links'       => LinkController::class,
     ]);
 
     $router->get('auth/login', 'AuthController@getLogin');

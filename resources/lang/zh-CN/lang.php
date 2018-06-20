@@ -22,6 +22,7 @@ return [
     'discuss'       => "评论",
     'commentUser'   => "回复人",
     'targetUser'    => "被回复人",
+    'domain'        => "链接",
 
     'states' => [
         'on'  => [
