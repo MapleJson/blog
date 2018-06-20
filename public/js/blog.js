@@ -35,7 +35,7 @@ layui.use(["jquery", "form", "layedit", "flow"], function () {
                     icon: 5
                 })
             },
-            error: function () {
+            error: function (e) {
                 layer.close(i);
                 if ("Unauthenticated." === e.responseJSON.message) {
                     layer.msg("请先登录", {

@@ -19,6 +19,9 @@ return [
     'cover'         => "封面图",
     'top'           => "置顶",
     'recommend'     => "推荐",
+    'discuss'       => "评论",
+    'commentUser'   => "回复人",
+    'targetUser'    => "被回复人",
 
     'states' => [
         'on'  => [

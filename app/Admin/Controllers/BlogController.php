@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Extensions\ShowComments;
 use App\Common\Models\Blog;
 use App\Common\Models\Tag;
 use App\Common\PublicController;
@@ -84,6 +85,10 @@ class BlogController extends PublicController
             $grid->comments($this->trans('comments'))->sortable();
 
             $grid->created_at($this->trans('created_at', 'admin'));
+
+            $grid->actions(function (Grid\Displayers\Actions $actions) {
+                $actions->prepend(new ShowComments($actions->getKey()));
+            });
 
             $grid->filter(function (Grid\Filter $filter) {
 
