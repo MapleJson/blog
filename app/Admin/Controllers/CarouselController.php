@@ -112,12 +112,13 @@ class CarouselController extends PublicController
             $form->text('title', $this->trans('title', 'admin'))
                 ->rules('required|string');
 
-            $form->image('img',$this->trans('choose_image', 'admin'))
+            $form->image('img', $this->trans('choose_image', 'admin'))
                 ->name($this->uploadImageName())
                 ->rules('required');
 
             $form->radio('type', $this->trans('type'))
-                ->options($this->trans('carouselType'));
+                ->options($this->trans('carouselType'))
+                ->default(Code::TOP_PIC_TYPE);
 
             $form->switch('state', $this->trans('isShow'))
                 ->default(Code::NO)
