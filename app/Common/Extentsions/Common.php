@@ -48,9 +48,23 @@ trait Common
         return trans("{$file}.{$column}");
     }
 
+    /**
+     * 获取完整图片路径
+     *
+     * @param $src
+     * @return mixed
+     */
     public static function uploadImageUrl($src)
     {
         return Storage::disk(config('admin.upload.disk'))->url($src);
+    }
+
+    /**
+     * 返回上传图片的修改名称
+     */
+    public function uploadImageName()
+    {
+        return date("YmdHis") . rand(0,1000) . ".png";
     }
 
     /**

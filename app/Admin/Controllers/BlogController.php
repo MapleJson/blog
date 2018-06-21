@@ -74,11 +74,12 @@ class BlogController extends PublicController
     {
         return Admin::grid(Blog::class, function (Grid $grid) {
 
+            $grid->model()->orderBy('id', 'desc');
             $grid->id('ID')->sortable();
             $grid->title($this->trans('title', 'admin'))->ucfirst()->limit(30);
             $grid->tags($this->trans('tags'))->pluck('name')->label();
             $grid->authorName($this->trans('author'));
-            $grid->state($this->trans('release'))->switch($this->trans('states'));
+            $grid->state($this->trans('release'))->switch($this->trans('states'))->sortable();
             $grid->isTop($this->trans('top'))->switch($this->trans('states'));
             $grid->recommend($this->trans('recommend'))->switch($this->trans('states'));
             $grid->read($this->trans('read'))->sortable();
@@ -131,7 +132,9 @@ class BlogController extends PublicController
                 ->options(Tag::all()->pluck('name', 'id'))
                 ->rules('required');
 
-            $form->image('img', $this->trans('cover'))->rules('required');
+            $form->image('img', $this->trans('cover'))
+                ->name($this->uploadImageName())
+                ->rules('required');
 
             $form->text('summary', $this->trans('synopsis'))
                 ->rules('required|string');
@@ -139,10 +142,16 @@ class BlogController extends PublicController
                 ->rules('required|string');
 
             $form->switch('state', $this->trans('release'))
+                ->default(2)
+                ->states($this->trans('states'))
                 ->rules('required');
             $form->switch('isTop', $this->trans('top'))
+                ->default(2)
+                ->states($this->trans('states'))
                 ->rules('required');
             $form->switch('recommend', $this->trans('recommend'))
+                ->default(2)
+                ->states($this->trans('states'))
                 ->rules('required');
 
             $form->display('created_at', $this->trans('created_at', 'admin'));

@@ -71,8 +71,8 @@ return [
         'disk' => 'admin',
 
         'directory' => [
-            'image' => 'images',
-            'file'  => 'files',
+            'image' => 'images/' . date('Ymd'),
+            'file'  => 'files/' . date('Ymd'),
         ],
     ],
 

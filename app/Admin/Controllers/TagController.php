@@ -71,7 +71,7 @@ class TagController extends PublicController
     protected function grid()
     {
         return Admin::grid(Tag::class, function (Grid $grid) {
-
+            $grid->model()->orderBy('id', 'desc');
             $grid->id('ID')->sortable();
             $grid->name($this->trans('name', 'admin'))->label();
             $grid->state($this->trans('isShow'))->switch($this->trans('states'));
@@ -101,6 +101,8 @@ class TagController extends PublicController
                 ->rules('required|string');
 
             $form->switch('state', $this->trans('isShow'))
+                ->default(2)
+                ->states($this->trans('states'))
                 ->rules('required');
 
             $form->display('created_at', $this->trans('created_at', 'admin'));

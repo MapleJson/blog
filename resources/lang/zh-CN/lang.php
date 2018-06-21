@@ -22,7 +22,17 @@ return [
     'discuss'       => "评论",
     'commentUser'   => "回复人",
     'targetUser'    => "被回复人",
+    'links'         => "友情链接",
     'domain'        => "链接",
+    'about'         => "关于我",
+    'siteName'      => "站点名称",
+    'profession'    => "职业",
+    'keywords'      => "关键字",
+    'description'   => "说明",
+    'mood'          => "描述",
+    'weChat'        => "微信账号",
+    'weChatQR'      => "微信二维码",
+    'qq'            => "QQ号",
 
     'states' => [
         'on'  => [

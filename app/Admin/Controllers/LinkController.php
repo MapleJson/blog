@@ -23,7 +23,7 @@ class LinkController extends PublicController
     {
         return Admin::content(function (Content $content) {
 
-            $content->header($this->trans('posts'));
+            $content->header($this->trans('links'));
             $content->description($this->trans('list', 'admin'));
 
             $content->body($this->grid());
@@ -40,7 +40,7 @@ class LinkController extends PublicController
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header($this->trans('posts'));
+            $content->header($this->trans('links'));
             $content->description($this->trans('edit', 'admin'));
 
             $content->body($this->form()->edit($id));
@@ -56,7 +56,7 @@ class LinkController extends PublicController
     {
         return Admin::content(function (Content $content) {
 
-            $content->header($this->trans('posts'));
+            $content->header($this->trans('links'));
             $content->description($this->trans('create', 'admin'));
 
             $content->body($this->form());
@@ -71,7 +71,7 @@ class LinkController extends PublicController
     protected function grid()
     {
         return Admin::grid(Link::class, function (Grid $grid) {
-
+            $grid->model()->orderBy('id', 'desc');
             $grid->id('ID')->sortable();
             $grid->title($this->trans('title', 'admin'));
             $grid->logo('LOGO')->image();
@@ -106,6 +106,8 @@ class LinkController extends PublicController
             $form->textarea('summary', $this->trans('synopsis'));
 
             $form->switch('state', $this->trans('isShow'))
+                ->default(2)
+                ->states($this->trans('states'))
                 ->rules('required');
 
             $form->display('created_at', $this->trans('created_at', 'admin'));
