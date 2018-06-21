@@ -74,7 +74,9 @@ class LinkController extends PublicController
             $grid->model()->orderBy('id', 'desc');
             $grid->id('ID')->sortable();
             $grid->title($this->trans('title', 'admin'));
-            $grid->logo('LOGO')->image();
+            $grid->logo('LOGO')->display(function ($logo) {
+                return "<img src='{$logo}' style='max-width:50px;max-height:50px' class='img img-thumbnail'>";
+            });
             $grid->domain($this->trans('domain'));
             $grid->state($this->trans('isShow'))->switch($this->trans('states'));
 
