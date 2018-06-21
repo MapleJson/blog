@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Common\Extensions\Code;
 use App\Common\Models\Tag;
 use App\Common\PublicController;
 use Encore\Admin\Form;
@@ -101,7 +102,7 @@ class TagController extends PublicController
                 ->rules('required|string');
 
             $form->switch('state', $this->trans('isShow'))
-                ->default(2)
+                ->default(Code::NO)
                 ->states($this->trans('states'))
                 ->rules('required');
 

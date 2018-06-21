@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Common\Extensions\Code;
 use App\Common\Models\About;
 use App\Common\PublicController;
 use Encore\Admin\Form;
@@ -133,7 +134,7 @@ class AboutController extends PublicController
                 ->rules('required');
 
             $form->switch('state', $this->trans('isShow'))
-                ->default(2)
+                ->default(Code::NO)
                 ->states($this->trans('states'))
                 ->rules('required');
 

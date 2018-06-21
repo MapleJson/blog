@@ -33,15 +33,17 @@ return [
     'weChat'        => "微信账号",
     'weChatQR'      => "微信二维码",
     'qq'            => "QQ号",
+    'carousels'     => "首页图片",
+    'type'          => "类型",
 
     'states' => [
         'on'  => [
-            'value' => 1,
+            'value' => Code::YES,
             'text'  => '是',
             'color' => 'success'
         ],
         'off' => [
-            'value' => 2,
+            'value' => Code::NO,
             'text'  => '否',
             'color' => 'danger'
         ],
@@ -54,6 +56,11 @@ return [
     'successfulFailure' => [
         Code::IS_SUCCESSFUL => "成功",
         Code::IS_FAILURE    => "失败",
+    ],
+
+    'carouselType' => [
+        Code::TOP_PIC_TYPE => '顶部',
+        Code::CAROUSEL_TYPE => '轮播',
     ],
 
 ];

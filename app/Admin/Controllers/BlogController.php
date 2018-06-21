@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Extensions\ShowComments;
+use App\Common\Extensions\Code;
 use App\Common\Models\Blog;
 use App\Common\Models\Tag;
 use App\Common\PublicController;
@@ -142,15 +143,15 @@ class BlogController extends PublicController
                 ->rules('required|string');
 
             $form->switch('state', $this->trans('release'))
-                ->default(2)
+                ->default(Code::NO)
                 ->states($this->trans('states'))
                 ->rules('required');
             $form->switch('isTop', $this->trans('top'))
-                ->default(2)
+                ->default(Code::NO)
                 ->states($this->trans('states'))
                 ->rules('required');
             $form->switch('recommend', $this->trans('recommend'))
-                ->default(2)
+                ->default(Code::NO)
                 ->states($this->trans('states'))
                 ->rules('required');
 

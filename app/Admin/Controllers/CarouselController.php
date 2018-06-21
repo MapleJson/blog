@@ -3,7 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Common\Extensions\Code;
-use App\Common\Models\Link;
+use App\Common\Models\Carousel;
 use App\Common\PublicController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,7 +11,7 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Controllers\ModelForm;
 
-class LinkController extends PublicController
+class CarouselController extends PublicController
 {
     use ModelForm;
 
@@ -24,7 +24,7 @@ class LinkController extends PublicController
     {
         return Admin::content(function (Content $content) {
 
-            $content->header($this->trans('links'));
+            $content->header($this->trans('carousels'));
             $content->description($this->trans('list', 'admin'));
 
             $content->body($this->grid());
@@ -41,7 +41,7 @@ class LinkController extends PublicController
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header($this->trans('links'));
+            $content->header($this->trans('carousels'));
             $content->description($this->trans('edit', 'admin'));
 
             $content->body($this->form()->edit($id));
@@ -57,7 +57,7 @@ class LinkController extends PublicController
     {
         return Admin::content(function (Content $content) {
 
-            $content->header($this->trans('links'));
+            $content->header($this->trans('carousels'));
             $content->description($this->trans('create', 'admin'));
 
             $content->body($this->form());
@@ -71,14 +71,21 @@ class LinkController extends PublicController
      */
     protected function grid()
     {
-        return Admin::grid(Link::class, function (Grid $grid) {
+        return Admin::grid(Carousel::class, function (Grid $grid) {
             $grid->model()->orderBy('id', 'desc');
             $grid->id('ID')->sortable();
             $grid->title($this->trans('title', 'admin'));
-            $grid->logo('LOGO')->display(function ($logo) {
-                return "<img src='{$logo}' style='max-width:50px;max-height:50px' class='img img-thumbnail'>";
-            });
-            $grid->domain($this->trans('domain'));
+            $grid->img($this->trans('thumbnail'))->image();
+            $grid->type($this->trans('type'))->display(function ($type) {
+                if ($type === Code::TOP_PIC_TYPE) {
+                    $class = 'primary';
+                } else {
+                    $class = 'success';
+                }
+                return "<span class='label label-{$class}'>" .
+                    $this->trans("carouselType.{$type}") .
+                    "</span>";
+            })->sortable();
             $grid->state($this->trans('isShow'))->switch($this->trans('states'));
 
             $grid->created_at($this->trans('created_at', 'admin'));
@@ -98,15 +105,19 @@ class LinkController extends PublicController
      */
     protected function form()
     {
-        return Admin::form(Link::class, function (Form $form) {
+        return Admin::form(Carousel::class, function (Form $form) {
 
             $form->display('id', 'ID');
 
             $form->text('title', $this->trans('title', 'admin'))
                 ->rules('required|string');
-            $form->url('logo','LOGO');
-            $form->url('domain', $this->trans('domain'));
-            $form->textarea('summary', $this->trans('synopsis'));
+
+            $form->image('img',$this->trans('choose_image', 'admin'))
+                ->name($this->uploadImageName())
+                ->rules('required');
+
+            $form->radio('type', $this->trans('type'))
+                ->options($this->trans('carouselType'));
 
             $form->switch('state', $this->trans('isShow'))
                 ->default(Code::NO)
