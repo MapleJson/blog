@@ -65,6 +65,9 @@ php artisan serve
 ```
 
 [访问前台<http://127.0.0.1:8000>](http://127.0.0.1:8000)
+
 [访问后台<http://127.0.0.1:8000/admin>](http://127.0.0.1:8000/admin)
+
 账号：admin
+
 密码：admin
