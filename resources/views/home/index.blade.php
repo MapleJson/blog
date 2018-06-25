@@ -33,7 +33,7 @@
 @stop
 
 @section('article')
-    @if(!empty($blogs))
+    @if($blogs != '[]')
         @foreach($blogs as $blog)
             <li class="layui-anim" data-anim="layui-anim-fadein">
                 @if(!empty($blog->img))
@@ -62,6 +62,8 @@
                 </div>
             </li>
         @endforeach
+    @else
+        <div class="layui-flow-more">此主人很懒,什么都没有留下</div>
     @endif
 @stop
 

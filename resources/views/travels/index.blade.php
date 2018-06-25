@@ -32,7 +32,7 @@
             @endforeach
         </ul>
     @else
-        <p style="text-align: center">暂无数据</p>
+        <div class="layui-flow-more">没有更多了</div>
     @endif
 @stop
 
