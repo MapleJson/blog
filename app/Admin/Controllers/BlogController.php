@@ -134,7 +134,7 @@ class BlogController extends PublicController
                 ->rules('required');
 
             $form->image('img', $this->trans('cover'))
-                ->name($this->uploadImageName())
+                ->uniqueName()
                 ->rules('required');
 
             $form->text('summary', $this->trans('synopsis'))

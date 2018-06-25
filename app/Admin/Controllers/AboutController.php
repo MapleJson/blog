@@ -124,7 +124,7 @@ class AboutController extends PublicController
                 ->rules('required|string');
 
             $form->image('weChatQR', $this->trans('weChatQR'))
-                ->name($this->uploadImageName())
+                ->uniqueName()
                 ->rules('required');
 
             $form->number('qq', $this->trans('qq'))

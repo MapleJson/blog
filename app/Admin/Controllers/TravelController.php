@@ -100,7 +100,7 @@ class TravelController extends PublicController
             $form->text('title', $this->trans('title', 'admin'))
                 ->rules('required|string');
             $form->image('cover',$this->trans('cover'))
-                ->name($this->uploadImageName())
+                ->uniqueName()
                 ->rules('required');
             $form->text('summary', $this->trans('synopsis'))
                 ->rules('required|string');

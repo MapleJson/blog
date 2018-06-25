@@ -1,15 +1,22 @@
 <div class="box">
     <div class="box-header">
-
+        <script data-exec-on-popstate>
+            $(function () {
+                $('.file-upload').on('change', function () {
+                    $('.file-upload-form').submit();
+                });
+            });
+        </script>
         <h3 class="box-title"></h3>
 
         <span style="position: absolute;left: 10px;top: 5px;">
             {!! $grid->renderHeaderTools() !!}
             <label class="btn btn-default btn"{{-- data-toggle="modal" data-target="#uploadModal"--}}>
                 <i class="fa fa-upload"></i>&nbsp;&nbsp;{{ trans('admin.upload') }}
-                    <form action="{{ $url['upload'] or '' }}" method="post" class="file-upload-form"
+                    <form action="{{ $uploadAction }}" method="post" class="file-upload-form"
                           enctype="multipart/form-data" pjax-container>
                     <input type="file" name="files[]" class="hidden file-upload" multiple>
+                    <input type="hidden" name="travelId" value="{{ $travelId }}">
                         {{ csrf_field() }}
                 </form>
             </label>

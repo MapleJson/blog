@@ -60,14 +60,6 @@ trait Common
     }
 
     /**
-     * 返回上传图片的修改名称
-     */
-    public function uploadImageName()
-    {
-        return date("YmdHis") . rand(0,1000) . ".png";
-    }
-
-    /**
      * 获取分页查询条件
      *
      * @param array $page

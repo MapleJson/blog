@@ -2,18 +2,18 @@
 
 namespace App\Admin\Controllers;
 
+use App\Common\PublicController;
 use Encore\Admin\Auth\Database\Administrator;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Layout\Content;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
-class AuthController extends Controller
+class AuthController extends PublicController
 {
     /**
      * Show the login page.
@@ -116,7 +116,8 @@ class AuthController extends Controller
             $form->display('username', trans('admin.username'));
             $form->text('name', trans('admin.name'))->rules('required');
             $form->email('email', trans('admin.email'))->rules('required');
-            $form->image('avatar', trans('admin.avatar'));
+            $form->image('avatar', trans('admin.avatar'))
+                ->uniqueName();
             $form->password('password', trans('admin.password'))->rules('confirmed|required');
             $form->password('password_confirmation', trans('admin.password_confirmation'))->rules('required')
                 ->default(function ($form) {

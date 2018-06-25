@@ -113,7 +113,7 @@ class CarouselController extends PublicController
                 ->rules('required|string');
 
             $form->image('img', $this->trans('choose_image', 'admin'))
-                ->name($this->uploadImageName())
+                ->uniqueName()
                 ->rules('required');
 
             $form->radio('type', $this->trans('type'))

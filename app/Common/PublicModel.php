@@ -190,13 +190,23 @@ class PublicModel extends Model
     }
 
     /**
-     * 增加数据
+     * 增加一条数据
      *
      * @return mixed
      */
     public static function addToData()
     {
         return self::databaseClient()->create(self::$data);
+    }
+
+    /**
+     * 批量增加数据
+     *
+     * @return mixed
+     */
+    public static function insertToData()
+    {
+        return self::databaseClient()->insert(self::$data);
     }
 
     /**

@@ -2,7 +2,6 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Extensions\PhotoDelete;
 use App\Common\Extensions\Code;
 use App\Common\Models\Photo;
 use App\Common\PublicController;
@@ -11,10 +10,23 @@ use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Controllers\ModelForm;
+use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends PublicController
 {
     use ModelForm;
+
+    /**
+     * @var string
+     */
+    protected $path = '/';
+
+    /**
+     * @var \Illuminate\Filesystem\FilesystemAdapter
+     */
+    protected $storage;
 
     /**
      * Index interface.
@@ -66,9 +78,74 @@ class PhotoController extends PublicController
         });
     }
 
-    public function upload()
+    private function initStorage()
     {
+        $disk = config("admin.upload.disk");
 
+        $this->storage = Storage::disk($disk);
+    }
+
+    /**
+     * Upload interface.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function upload(Request $request)
+    {
+        $files = $request->file('files');
+        $travelId = $request->get('travelId');
+
+        $this->initStorage();
+
+        try {
+            if ($this->uploadImage($files, $travelId)) {
+                admin_toastr($this->trans('uploadSucceeded'));
+            }
+        } catch (\Exception $e) {
+            admin_toastr($e->getMessage(), 'error');
+        }
+
+        return back();
+    }
+
+    /**
+     * @param UploadedFile[] $files
+     * @param int $travelId
+     *
+     * @return mixed
+     */
+    private function uploadImage($files, $travelId)
+    {
+        $this->path .= config("admin.upload.directory.image");
+
+        foreach ($files as $file) {
+            $fileName = $this->generateUniqueName($file);
+            $result = $this->storage->putFileAs($this->path, $file, $fileName);
+            if ($result) {
+                Photo::$data[] = [
+                    'travelId' => $travelId,
+                    'img' => "{$this->path}/{$fileName}",
+                    'state' => Code::YES,
+                    Photo::CREATED_AT => date("Y-m-d H:i:s"),
+                    Photo::UPDATED_AT => date("Y-m-d H:i:s"),
+                ];
+            }
+        }
+
+        return Photo::insertToData();
+    }
+
+    /**
+     * Generate a unique name for uploaded file.
+     *
+     * @param UploadedFile $file
+     *
+     * @return string
+     */
+    private function generateUniqueName(UploadedFile $file)
+    {
+        return md5(uniqid()).'.'.$file->getClientOriginalExtension();
     }
 
     /**
@@ -88,7 +165,10 @@ class PhotoController extends PublicController
 
             $grid->resource("/admin/photos");
 
-            $grid->setView('admin.grid.photo');
+            $grid->setView('admin.grid.photo', [
+                'uploadAction' => route('uploadPhotos'),
+                'travelId' => $travelId,
+            ]);
 
             $grid->disableExport();
             $grid->disableFilter();
