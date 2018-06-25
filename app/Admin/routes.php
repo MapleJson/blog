@@ -19,6 +19,7 @@ Route::group([
         'links'      => LinkController::class,
         'about'      => AboutController::class,
         'carousels'  => CarouselController::class,
+        'travels'    => TravelController::class,
     ]);
 
     $router->get('auth/login', 'AuthController@getLogin');
@@ -27,5 +28,11 @@ Route::group([
     $router->get('auth/setting', 'AuthController@getSetting');
     $router->put('auth/setting', 'AuthController@putSetting');
 
-    $router->get('comment/{articleId}', 'CommentController@index')->name('showComments');
+
+    $router->get('comment/{articleId?}', 'CommentController@index')->name('showComments');
+    $router->get('photos/{travelId}', 'PhotoController@index')->name('showPhotos');
+    $router->get('photos/{id}/edit', 'PhotoController@edit')->name('editPhoto');
+    $router->post('photos/upload', 'PhotoController@upload')->name('uploadPhotos');
+    $router->match(['PUT', 'PATCH'], 'photos/{id}', 'PhotoController@update')->name('updatePhoto');
+    $router->delete('photos/{id}', 'PhotoController@destroy')->name('deletePhoto');
 });

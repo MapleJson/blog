@@ -3,7 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Common\Extensions\Code;
-use App\Common\Models\Link;
+use App\Common\Models\Travel;
 use App\Common\PublicController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,7 +11,7 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Controllers\ModelForm;
 
-class LinkController extends PublicController
+class TravelController extends PublicController
 {
     use ModelForm;
 
@@ -24,7 +24,7 @@ class LinkController extends PublicController
     {
         return Admin::content(function (Content $content) {
 
-            $content->header($this->trans('links'));
+            $content->header($this->trans('travels'));
             $content->description($this->trans('list', 'admin'));
 
             $content->body($this->grid());
@@ -41,7 +41,7 @@ class LinkController extends PublicController
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header($this->trans('links'));
+            $content->header($this->trans('travels'));
             $content->description($this->trans('edit', 'admin'));
 
             $content->body($this->form()->edit($id));
@@ -57,7 +57,7 @@ class LinkController extends PublicController
     {
         return Admin::content(function (Content $content) {
 
-            $content->header($this->trans('links'));
+            $content->header($this->trans('travels'));
             $content->description($this->trans('create', 'admin'));
 
             $content->body($this->form());
@@ -71,21 +71,18 @@ class LinkController extends PublicController
      */
     protected function grid()
     {
-        return Admin::grid(Link::class, function (Grid $grid) {
+        return Admin::grid(Travel::class, function (Grid $grid) {
             $grid->model()->orderBy('id', 'desc');
-            $grid->id('ID')->sortable();
-            $grid->title($this->trans('title', 'admin'));
-            $grid->logo('LOGO')->image(null, 50, 50);
-            $grid->domain($this->trans('domain'));
-            $grid->state($this->trans('isShow'))->switch($this->trans('states'));
 
-            $grid->created_at($this->trans('created_at', 'admin'));
+            $grid->id('ID');
+            $grid->title();
+            $grid->cover()->image();
+            $grid->summary()->limit(20);
 
-            $grid->filter(function (Grid\Filter $filter) {
-                $filter->like('domain', $this->trans('domain'));
-            });
+            $grid->setView('admin.grid.travel');
 
             $grid->disableExport();
+            $grid->disableFilter();
         });
     }
 
@@ -96,15 +93,17 @@ class LinkController extends PublicController
      */
     protected function form()
     {
-        return Admin::form(Link::class, function (Form $form) {
+        return Admin::form(Travel::class, function (Form $form) {
 
             $form->display('id', 'ID');
 
             $form->text('title', $this->trans('title', 'admin'))
                 ->rules('required|string');
-            $form->url('logo', 'LOGO');
-            $form->url('domain', $this->trans('domain'));
-            $form->textarea('summary', $this->trans('synopsis'));
+            $form->image('cover',$this->trans('cover'))
+                ->name($this->uploadImageName())
+                ->rules('required');
+            $form->text('summary', $this->trans('synopsis'))
+                ->rules('required|string');
 
             $form->switch('state', $this->trans('isShow'))
                 ->default(Code::NO)

@@ -35,6 +35,9 @@ return [
     'qq'            => "QQ号",
     'carousels'     => "首页图片",
     'type'          => "类型",
+    'messages'      => "留言",
+    'travels'       => "相册",
+    'photos'        => "相片",
 
     'states' => [
         'on'  => [
@@ -59,7 +62,7 @@ return [
     ],
 
     'carouselType' => [
-        Code::TOP_PIC_TYPE => '顶部',
+        Code::TOP_PIC_TYPE  => '顶部',
         Code::CAROUSEL_TYPE => '轮播',
     ],
 

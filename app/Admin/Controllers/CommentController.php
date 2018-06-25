@@ -2,9 +2,9 @@
 
 namespace App\Admin\Controllers;
 
+use App\Common\Extensions\Code;
 use App\Common\Models\Message;
 use App\Common\PublicController;
-use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
@@ -21,11 +21,11 @@ class CommentController extends PublicController
      *
      * @return Content
      */
-    public function index($articleId)
+    public function index($articleId = Code::EMPTY)
     {
         return Admin::content(function (Content $content) use ($articleId) {
 
-            $content->header($this->trans('discuss'));
+            $content->header($this->trans($articleId ? 'discuss' : 'messages'));
             $content->description($this->trans('list', 'admin'));
 
             $content->body($this->grid($articleId));
@@ -43,7 +43,6 @@ class CommentController extends PublicController
     {
         return Admin::grid(Message::class, function (Grid $grid) use ($articleId) {
 
-
             $grid->model()->where('articleId', $articleId)->orderBy('id', 'desc');
 
             $grid->username($this->trans('commentUser'))->label();
@@ -58,14 +57,14 @@ class CommentController extends PublicController
                 });
 
             $grid->content($this->trans('contents'))->display(function ($content) {
-                return $content;
+                return "<div style='max-width: 700px'>{$content}</div>";
             });;
             $grid->state($this->trans('isShow'))->switch($this->trans('states'));
 
             $grid->created_at($this->trans('created_at', 'admin'));
 
             $grid->filter(function (Grid\Filter $filter) {
-                $filter->like('content', $this->trans('contents', 'admin'));
+                $filter->like('content', $this->trans('contents'));
             });
 
             $grid->disableExport();
