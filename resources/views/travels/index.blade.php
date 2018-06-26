@@ -15,7 +15,7 @@
 @section('leftClass')picbox @stop
 
 @section('article')
-    @if($galleries != '[]')
+    @if(!empty($galleries) && $galleries != '[]')
         <ul>
             @foreach($galleries as $gallery)
                 <li>
@@ -43,7 +43,7 @@
 @stop
 
 @section('sidebar')
-    @if(!empty($propose))
+    @if(!empty($propose) && $propose != '[]')
         <div class="paihang">
             <h2 class="hometitle">站长推荐</h2>
             <ul>

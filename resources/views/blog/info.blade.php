@@ -43,7 +43,7 @@
             <p>下一篇：<a href="javascript:;">没有了...</a></p>
         @endif
     </div>
-    @if(!empty($related))
+    @if(!empty($related) && $related != '[]')
         <div class="otherlink">
             <h2>相关文章</h2>
             <ul>
@@ -133,7 +133,7 @@
 @stop
 
 @section('sidebar')
-    @if(!empty($propose))
+    @if(!empty($propose) && $propose != '[]')
         <div class="paihang">
             <h2 class="hometitle">站长推荐</h2>
             <ul>

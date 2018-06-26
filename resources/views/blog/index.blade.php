@@ -44,6 +44,8 @@
                     </div>
                 </li>
             @endforeach
+        @else
+            <div class="layui-flow-more">没有更多了</div>
         @endif
     </ul>
 @stop
@@ -52,7 +54,7 @@
 @stop
 
 @section('sidebar')
-    @if(!empty($propose))
+    @if(!empty($propose) && $propose != '[]')
         <div class="paihang">
             <h2 class="hometitle">站长推荐</h2>
             <ul>

@@ -97,7 +97,7 @@
                     </div>
                 @show
                 @section('cloud')
-                    @if(!empty($tags))
+                    @if(!empty($tags) && $tags != '[]')
                         <div class="cloud">
                             <h2 class="hometitle">标签云</h2>
                             <ul>
@@ -123,7 +123,7 @@
                     </div>
                 @show
                 @section('sidebar')
-                    @if(!empty($links))
+                    @if(!empty($links) && $links != '[]')
                         <div class="links">
                             <h2 class="hometitle">友情链接</h2>
                             <ul>
