@@ -43,7 +43,7 @@ class CommentController extends PublicController
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header($this->trans('travels'));
+            $content->header($this->trans('messages'));
             $content->description($this->trans('edit', 'admin'));
 
             $content->body($this->form()->edit($id));
