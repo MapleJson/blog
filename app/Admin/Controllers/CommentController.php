@@ -85,10 +85,6 @@ class CommentController extends PublicController
                 $filter->like('content', $this->trans('contents'));
             });
 
-            $grid->actions(function (Grid\Displayers\Actions $actions) {
-                $actions->disableEdit();
-            });
-
             $grid->disableExport();
             $grid->disableCreateButton();
             $grid->disableRowSelector();
