@@ -83,6 +83,7 @@ INSERT INTO `admin_menu` VALUES (12, 0, 9, '网站设置', 'fa-cogs', 'about', '
 INSERT INTO `admin_menu` VALUES (13, 0, 2, '首页图片', 'fa-image', 'carousels', '2018-06-21 15:11:26', '2018-06-21 15:11:48');
 INSERT INTO `admin_menu` VALUES (14, 0, 7, '留言管理', 'fa-comments', 'comment', '2018-06-21 15:59:27', '2018-06-25 00:59:53');
 INSERT INTO `admin_menu` VALUES (15, 0, 6, '相册管理', 'fa-camera-retro', 'travels', '2018-06-21 16:01:21', '2018-06-25 00:59:41');
+INSERT INTO `admin_menu` VALUES (16, 0, 9, '用户管理', 'fa-users', 'users', '2018-06-27 01:02:15', '2018-06-27 01:02:40');
 COMMIT;
 
 -- ----------------------------
