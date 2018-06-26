@@ -2,6 +2,7 @@
 
 namespace App\Providers\Base;
 
+use App\Common\Extensions\Code;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,13 +39,21 @@ class OAuthManager
         return $name;
     }
 
+    private function authLogin($currentUser)
+    {
+        if ($currentUser->state !== Code::ENABLED_STATUS) {
+            return true;
+        }
+        Auth::login($currentUser);
+        return $currentUser;
+    }
+
     protected function authWithQq($user)
     {
         // 如果已经存在 -> 登录
         $currentUser = $this->getUniqueId('qqOpenid', $user->id);
         if ($currentUser) {
-            Auth::login($currentUser);
-            return $currentUser;
+            return $this->authLogin($currentUser);
         }
         // 创建用户
         // 判断有重复昵称则拼接随机字符串
@@ -55,14 +64,13 @@ class OAuthManager
             'username'          => $username,
             'nickname'          => $user->nickname,
             'email'             => $user->email,
-            'state'             => 1,
+            'state'             => Code::ENABLED_STATUS,
             'avatar'            => $user->avatar,
             'password'          => '',
             'confirmationToken' => str_random(40),
         ]);
 
-        Auth::login($currentUser);
-        return $currentUser;
+        return $this->authLogin($currentUser);
     }
 
     // 存储github用户信息
@@ -71,8 +79,7 @@ class OAuthManager
         // 如果已经存在 -> 登录
         $currentUser = $this->getUniqueId('githubId', $user->id);
         if ($currentUser) {
-            Auth::login($currentUser);
-            return $currentUser;
+            return $this->authLogin($currentUser);
         }
 
         $username = $this->getUniqueName($user->nickname);
@@ -86,13 +93,12 @@ class OAuthManager
             'githubId'   => $user->id,
             'githubName' => $user->name,
             'githubUrl'  => $user->user['url'],
-            'state'      => 1,
+            'state'      => Code::ENABLED_STATUS,
             'password'   => ''
 
         ]);
 
-        Auth::login($currentUser);
-        return $currentUser;
+        return $this->authLogin($currentUser);
     }
 
     // 存储weibo用户信息
@@ -101,8 +107,7 @@ class OAuthManager
         // 如果已经存在 -> 登录
         $currentUser = $this->getUniqueId('wbOpenId', $user->id);
         if ($currentUser) {
-            Auth::login($currentUser);
-            return $currentUser;
+            return $this->authLogin($currentUser);
         }
 
         $username = $this->getUniqueName($user->nickname);
@@ -113,12 +118,11 @@ class OAuthManager
             'email'    => $user->email,
             'avatar'   => $user->avatar,
             'wbOpenId' => $user->id,
-            'state'    => 1,
+            'state'    => Code::ENABLED_STATUS,
             'password' => ''
 
         ]);
 
-        Auth::login($currentUser);
-        return $currentUser;
+        return $this->authLogin($currentUser);
     }
 }

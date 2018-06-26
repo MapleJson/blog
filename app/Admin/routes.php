@@ -20,6 +20,7 @@ Route::group([
         'about'      => AboutController::class,
         'carousels'  => CarouselController::class,
         'travels'    => TravelController::class,
+        'users'      => FrontUserController::class,
     ]);
 
     $router->get('auth/login', 'AuthController@getLogin');

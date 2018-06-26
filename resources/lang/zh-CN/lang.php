@@ -39,6 +39,11 @@ return [
     'messages'        => "留言",
     'travels'         => "相册",
     'photos'          => "相片",
+    'frontUser'       => "用户",
+    'githubName'      => "GitHub名称",
+    'githubUrl'       => "GitHub地址",
+    'isUse'           => "启用",
+    'nickname'        => "昵称",
 
     'states' => [
         'on'  => [
