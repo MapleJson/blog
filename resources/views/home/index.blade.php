@@ -94,7 +94,7 @@
             carousel.render({
                 elem: '#banner'
                 , width: '100%'
-                , height: '500px'
+                , height: '680px'
                 , interval: 5000
             });
 
