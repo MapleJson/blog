@@ -75,9 +75,9 @@ INSERT INTO `admin_menu` VALUES (4, 2, 12, '角色', 'fa-user', 'auth/roles', NU
 INSERT INTO `admin_menu` VALUES (5, 2, 13, '权限', 'fa-ban', 'auth/permissions', NULL, '2018-06-25 00:59:53');
 INSERT INTO `admin_menu` VALUES (6, 2, 14, '菜单', 'fa-bars', 'auth/menu', NULL, '2018-06-25 00:59:53');
 INSERT INTO `admin_menu` VALUES (7, 2, 15, '日志', 'fa-history', 'auth/logs', NULL, '2018-06-25 00:59:53');
-INSERT INTO `admin_menu` VALUES (8, 10, 4, '文章', 'fa-book', 'blog', '2018-06-20 01:02:50', '2018-06-21 15:11:48');
+INSERT INTO `admin_menu` VALUES (8, 9, 4, '文章', 'fa-book', 'blog', '2018-06-20 01:02:50', '2018-06-21 15:11:48');
 INSERT INTO `admin_menu` VALUES (9, 0, 3, '博客管理', 'fa-book', NULL, '2018-06-20 16:00:25', '2018-06-21 15:11:48');
-INSERT INTO `admin_menu` VALUES (10, 10, 5, '标签', 'fa-tags', 'tags', '2018-06-20 21:48:55', '2018-06-21 15:11:48');
+INSERT INTO `admin_menu` VALUES (10, 9, 5, '标签', 'fa-tags', 'tags', '2018-06-20 21:48:55', '2018-06-21 15:11:48');
 INSERT INTO `admin_menu` VALUES (11, 0, 8, '友情链接', 'fa-link', 'links', '2018-06-20 23:25:14', '2018-06-25 00:59:53');
 INSERT INTO `admin_menu` VALUES (12, 0, 9, '网站设置', 'fa-cogs', 'about', '2018-06-21 10:20:40', '2018-06-25 00:59:53');
 INSERT INTO `admin_menu` VALUES (13, 0, 2, '首页图片', 'fa-image', 'carousels', '2018-06-21 15:11:26', '2018-06-21 15:11:48');

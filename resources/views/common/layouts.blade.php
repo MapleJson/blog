@@ -157,7 +157,7 @@
                 <a href="javascript:void(0)"><i class="fa fa-weixin"></i></a>
             </p>
             <p class="copyright">支持登录方式：QQ、GitHub、微博</p>
-            <p class="copyright">Copyright © 2018 by {{ $about->siteName or '秋枫阁' }}, All Rights Reserved 鄂ICP备xxxxxx号</p>
+            <p class="copyright">Copyright © 2018 by {{ $about->siteName or '秋枫阁' }}, All Rights Reserved</p>
         @show
     </footer>
 </div>
