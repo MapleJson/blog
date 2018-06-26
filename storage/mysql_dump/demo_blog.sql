@@ -31,7 +31,7 @@ CREATE TABLE `about` (
   `mood` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '一句话描述自己',
   `content` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '一篇关于我的文章',
   `weChat` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '微信号',
-  `weChatQR` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '微信二维码图片',
+  `weChatQR` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '微信二维码图片',
   `qq` bigint(15) unsigned DEFAULT NULL COMMENT 'QQ号',
   `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '邮箱',
   `state` tinyint(4) NOT NULL DEFAULT '2' COMMENT '是否展示 1 展示 2 不展示',
@@ -307,7 +307,7 @@ DROP TABLE IF EXISTS `links`;
 CREATE TABLE `links` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `domain` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '链接',
-  `logo` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'logo链接',
+  `logo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'logo链接',
   `title` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '站点名称',
   `summary` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '站点说明',
   `state` tinyint(4) NOT NULL DEFAULT '2' COMMENT '审核状态 1 通过 2 待审核 3 不通过',
@@ -327,7 +327,7 @@ CREATE TABLE `messages` (
   `parentId` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '主评论ID',
   `targetId` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '被回复人ID',
   `targetUser` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '作者' COMMENT '被回复人名称',
-  `avatar` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '回复人头像',
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '回复人头像',
   `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '回复人名称',
   `content` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '回复内容',
   `state` tinyint(4) NOT NULL DEFAULT '2' COMMENT '是否展示 1 展示 2 不展示',
@@ -376,7 +376,7 @@ DROP TABLE IF EXISTS `photos`;
 CREATE TABLE `photos` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `travelId` int(10) unsigned NOT NULL COMMENT '图片所属相册',
-  `img` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '图片地址',
+  `img` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '图片地址',
   `summary` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '图片简介',
   `state` tinyint(4) NOT NULL DEFAULT '2' COMMENT '是否展示 1 展示 2 不展示',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -406,7 +406,7 @@ CREATE TABLE `tags` (
 DROP TABLE IF EXISTS `travels`;
 CREATE TABLE `travels` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `cover` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '封面',
+  `cover` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '封面',
   `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '相册标题',
   `summary` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '相册简介',
   `state` tinyint(4) NOT NULL DEFAULT '2' COMMENT '是否展示 1 展示 2 不展示',
@@ -422,7 +422,7 @@ CREATE TABLE `travels` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `avatar` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户头像',
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户头像',
   `username` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户名称',
   `nickname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户昵称',
   `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户邮箱',
