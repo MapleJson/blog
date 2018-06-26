@@ -30,7 +30,8 @@ Route::group([
 
 
     $router->get('comment/{articleId?}', 'CommentController@index')->name('showComments');
-    $router->put('comment/{id}', 'CommentController@edit')->name('editComment');
+    $router->get('comment/{id}/edit', 'CommentController@edit')->name('editComment');
+    $router->match(['PUT', 'PATCH'], 'comment/{id}', 'CommentController@update')->name('updateComment');
     $router->delete('comment/{id}', 'CommentController@destroy')->name('deleteComment');
 
     $router->get('photos/{travelId}', 'PhotoController@index')->name('showPhotos');
