@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Common\Extensions\Code;
 use App\Common\Models\Message;
 use App\Common\PublicController;
+use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
@@ -29,6 +30,23 @@ class CommentController extends PublicController
             $content->description($this->trans('list', 'admin'));
 
             $content->body($this->grid($articleId));
+        });
+    }
+
+    /**
+     * Edit interface.
+     *
+     * @param $id
+     * @return Content
+     */
+    public function edit($id)
+    {
+        return Admin::content(function (Content $content) use ($id) {
+
+            $content->header($this->trans('travels'));
+            $content->description($this->trans('edit', 'admin'));
+
+            $content->body($this->form()->edit($id));
         });
     }
 
@@ -67,10 +85,37 @@ class CommentController extends PublicController
                 $filter->like('content', $this->trans('contents'));
             });
 
+            $grid->actions(function (Grid\Displayers\Actions $actions) {
+                $actions->disableEdit();
+            });
+
             $grid->disableExport();
-            $grid->disableActions();
             $grid->disableCreateButton();
             $grid->disableRowSelector();
+        });
+    }
+
+    /**
+     * Make a form builder.
+     *
+     * @return Form
+     */
+    protected function form()
+    {
+        return Admin::form(Message::class, function (Form $form) {
+
+            $form->display('id', 'ID');
+            $form->display('username', $this->trans('commentUser'));
+            $form->display('targetUser', $this->trans('targetUser'));
+            $form->display('content', $this->trans('contents'));
+
+            $form->switch('state', $this->trans('isShow'))
+                ->default(Code::NO)
+                ->states($this->trans('states'))
+                ->rules('required');
+
+            $form->display('created_at', $this->trans('created_at', 'admin'));
+            $form->display('updated_at', $this->trans('updated_at', 'admin'));
         });
     }
 
