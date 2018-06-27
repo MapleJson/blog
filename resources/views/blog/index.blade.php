@@ -44,8 +44,6 @@
                     </div>
                 </li>
             @endforeach
-        @else
-            <div class="layui-flow-more">没有更多了</div>
         @endif
     </ul>
 @stop
