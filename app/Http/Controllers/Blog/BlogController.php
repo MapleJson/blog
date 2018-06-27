@@ -110,10 +110,9 @@ class BlogController extends PublicController
          * 文章内容
          */
         Blog::_destroy();
-        $blog         = Blog::getOne($id);
-        $data['info'] = $blog;
-        $blog->read   += Code::YES;
-        $blog->save();
+        $data['info']       = Blog::getOne($id);
+        $data['info']->read += Code::YES;
+        $data['info']->save();
         /*
          * 上一篇
          */
