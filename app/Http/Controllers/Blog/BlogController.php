@@ -80,7 +80,7 @@ class BlogController extends PublicController
 
         foreach ($data['tags'] as $tag) {
             foreach ($tag->blog as $item) {
-                $item->img = self::uploadImageUrl($item->img);
+                $item->img       = self::uploadImageUrl($item->img);
                 $data['blogs'][] = $item;
             }
         }
@@ -110,9 +110,10 @@ class BlogController extends PublicController
          * 文章内容
          */
         Blog::_destroy();
-        $data['info'] = Blog::getOne($id);
-        $data['info']->read += Code::YES;
-        $data['info']->save();
+        $blog         = Blog::getOne($id);
+        $data['info'] = $blog;
+        $blog->read   += Code::YES;
+        $blog->save();
         /*
          * 上一篇
          */
