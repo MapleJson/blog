@@ -193,7 +193,8 @@ class PhotoController extends PublicController
             $form->display('id', 'ID');
 
             $form->image('img',$this->trans('photos'))
-                ->readOnly();
+                ->uniqueName()
+                ->rules('required');
 
             $form->text('summary', $this->trans('synopsis'))
                 ->rules('required|string');
