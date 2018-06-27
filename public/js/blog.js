@@ -119,7 +119,7 @@ layui.use(["jquery", "form", "layedit", "flow"], function () {
                         html += "            </li>";
                         lis.push(html);
                     });
-                    next(lis.join(''), page < data.pages);
+                    next(lis.join(''), page <= data.pages);
                 }
                 , 'json'
             );
