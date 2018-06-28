@@ -44,6 +44,7 @@ return [
     'githubUrl'       => "GitHub地址",
     'isUse'           => "启用",
     'nickname'        => "昵称",
+    'whisper'         => "耳语",
 
     'states' => [
         'on'  => [

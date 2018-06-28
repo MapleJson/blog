@@ -21,6 +21,7 @@ Route::group([
         'carousels'  => CarouselController::class,
         'travels'    => TravelController::class,
         'users'      => FrontUserController::class,
+        'whispers'   => WhisperController::class,
     ]);
 
     $router->get('auth/login', 'AuthController@getLogin');

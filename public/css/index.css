@@ -13,7 +13,10 @@
 .picshow li:hover .font h3 { top: 45%; opacity: 1 }
 article { width: 1200px; margin: auto }
 /* rightbox */
-.blogs { float: left; width: 70%; overflow: hidden; }
+.whisper, .blogs { float: left; width: 70%; overflow: hidden; }
+.whisper-timeline{background: #FFF; padding-top: 20px}
+.whisper ul.layui-timeline{margin: 20px}
+.whisper ul.layui-timeline li.last-before:before{display: none}
 .blogs li { margin-bottom: 10px; overflow: hidden; padding: 20px; background: #fff }
 h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0;}
 .blogpic { overflow: hidden; width: 35%; height: 180px; display: block; float: left; margin-right: 20px; border-radius: 5px; ; }

@@ -50,7 +50,7 @@
         padding: 10px 5px;
     }
 
-    .linkbox, .blogs {
+    .linkbox, .whisper, .blogs {
         width: 65%
     }
     .linkbox ul li {width: 45%;}
@@ -157,7 +157,7 @@
         width: 100%
     }
 
-    .linkbox, .blogs {
+    .linkbox, .blogs, .whisper{
         width: 62%
     }
     .linkbox ul li {width: 100%;margin: 10px 0;}
@@ -242,7 +242,7 @@
 }
 
 @media only screen and (min-width: 360px) and (max-width: 479px) {
-    header, .tophead, article, .leftbox, .sidebar, .blogs {
+    header, .tophead, article, .leftbox, .sidebar, .whisper, .blogs {
         width: 100%
     }
 
@@ -349,7 +349,7 @@
 }
 
 @media only screen and (max-width: 359px) {
-    header, .tophead, article, .leftbox, .sidebar, .blogs {
+    header, .tophead, article, .leftbox, .sidebar, .whisper, .blogs {
         width: 100%
     }
 

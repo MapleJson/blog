@@ -31,6 +31,7 @@
                         <li><a href="{{ route('home') }}">首页</a></li>
                         <li><a href="{{ route('travels') }}">点滴</a></li>
                         <li><a href="{{ route('blog') }}">博客</a></li>
+                        <li><a href="{{ route('whisper') }}">耳语</a></li>
                         <li><a href="{{ route('about') }}">关于</a></li>
                         <li><a href="{{ route('message') }}">留言</a></li>
                         <li><a href="{{ route('links') }}">友链</a></li>
@@ -52,6 +53,7 @@
                         <li><a href="{{ route('home') }}">首页</a></li>
                         <li><a href="{{ route('travels') }}">点滴</a></li>
                         <li><a href="{{ route('blog') }}">博客</a></li>
+                        <li><a href="{{ route('whisper') }}">耳语</a></li>
                         <li><a href="{{ route('about') }}">关于</a></li>
                         <li><a href="{{ route('message') }}">留言</a></li>
                         <li><a href="{{ route('links') }}">友链</a></li>
