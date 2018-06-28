@@ -77,6 +77,10 @@
         width: 100%
     }
 
+    .news_infos img[data-w-e] {
+        width: 5%;
+    }
+
     h3.blogtitle {
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -172,6 +176,10 @@
 
     .news_infos img {
         width: 100%
+    }
+
+    .news_infos img[data-w-e] {
+        width: 10%;
     }
 
     .blogpic {
@@ -278,6 +286,10 @@
 
     .news_infos img {
         width: 100%
+    }
+
+    .news_infos img[data-w-e] {
+        width: 8%;
     }
 
     .rightbox {
