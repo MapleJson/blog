@@ -19,7 +19,7 @@ layui.use(["jquery", "flow"], function () {
                         html += "<li class=\"layui-timeline-item\">";
                         html += "<i class=\"layui-icon layui-timeline-axis\"></i>";
                         html += "<div class=\"layui-timeline-content layui-text\">";
-                        html += "<h3 class=\"layui-timeline-title\">" + item.created_at + "</h3>";
+                        html += "<h3 class=\"layui-timeline-title\">" + item.created_at + "  --  " + item.author + "</h3>";
                         html += "<p>" + item.content + "</p>";
                         html += "</div>";
                         html += "</li>";
