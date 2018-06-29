@@ -20,7 +20,7 @@ article { width: 1200px; margin: auto }
 .whisper ul.layui-timeline li.last-before:before{display: none}
 .blogs li { margin-bottom: 10px; overflow: hidden; padding: 20px; background: #fff }
 h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0;}
-.blogpic { overflow: hidden; width: 35%; height: 180px; display: block; float: left; margin-right: 20px; border-radius: 5px; ; }
+.blogpic { overflow: hidden; width: 35%; /*height: 180px;*/ display: block; float: left; margin-right: 20px; border-radius: 5px; ; }
 .autor { position: relative;width: 100%; overflow: hidden; clear: both; margin: 20px 0 0 0; display: inline-block; color: #838383; font-size: 12px }
 .autor span { margin-right: 10px; padding-left: 20px }
 .autor span.read, .autor span.comments {padding-left: 0}
@@ -28,7 +28,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0;}
 .dtime { background: url(../images/newsbg02.png) no-repeat left center }
 .viewnum { background: url(../images/newsbg04.png) no-repeat left center }
 .pingl { background: url(../images/newsbg03.png) no-repeat left center }
-.blogpic img { width: 100% !important; height: 100% !important; }
+.blogpic img { width: 100% !important; /*height: 100% !important;*/ }
 .bloginfo p { color: #888; line-height: 28px; }
 .more { font-size: 14px; }
 .pages { padding: 0 60px 25px; text-align: right }
