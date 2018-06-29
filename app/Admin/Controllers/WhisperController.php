@@ -76,7 +76,7 @@ class WhisperController extends PublicController
             $grid->model()->orderBy('id', 'desc');
             $grid->id('ID')->sortable();
             $grid->author($this->trans('author'));
-            $grid->content($this->trans('contents'))->ucfirst()->limit(30);
+            $grid->content($this->trans('contents'))->ucfirst()->limit(80);
             $grid->state($this->trans('release'))->switch($this->trans('states'))->sortable();
             $grid->created_at($this->trans('created_at', 'admin'));
 
