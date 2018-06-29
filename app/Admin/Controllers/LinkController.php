@@ -77,7 +77,7 @@ class LinkController extends PublicController
             $grid->title($this->trans('title', 'admin'));
             $grid->logo('LOGO')->image(null, 50, 50);
             $grid->domain($this->trans('domain'))->display(function ($domain) {
-                return "<a href='{$domain}' target='_blank'></a>";
+                return "<a href='{$domain}' target='_blank'>{$domain}</a>";
             });
             $grid->state($this->trans('isShow'))->switch($this->trans('states'));
 
