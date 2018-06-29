@@ -76,7 +76,9 @@ class LinkController extends PublicController
             $grid->id('ID')->sortable();
             $grid->title($this->trans('title', 'admin'));
             $grid->logo('LOGO')->image(null, 50, 50);
-            $grid->domain($this->trans('domain'));
+            $grid->domain($this->trans('domain'))->display(function ($domain) {
+                return "<a href='{$domain}' target='_blank'></a>";
+            });
             $grid->state($this->trans('isShow'))->switch($this->trans('states'));
 
             $grid->created_at($this->trans('created_at', 'admin'));

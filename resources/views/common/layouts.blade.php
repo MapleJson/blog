@@ -160,7 +160,7 @@
             </p>
             <p class="copyright">支持登录方式：QQ、GitHub、微博</p>
             <p class="copyright">Copyright © 2018 by {{ $about->siteName or '秋枫阁' }}, All Rights Reserved</p>
-            <script language="javascript" src="https://zgboke.org/hutui.js"></script>
+            {{--<script language="javascript" src="https://zgboke.org/hutui.js"></script>--}}
         @show
     </footer>
 </div>
