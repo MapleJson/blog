@@ -37,7 +37,7 @@
     <div class="social-share share" data-title="{{ $info->title }}"
          data-description="{{ $info->summary or $info->title }}"
          data-image="{{ $info->img }}"
-         data-wechat-qrcode-helper="<p>微信里点“+”，扫一扫</p><p>扫二维码便可将本文分享至朋友圈</p>"
+         data-wechat-qrcode-helper="<p>微信扫一扫</p><p>然后将本文分享至朋友圈</p>"
          data-mobile-sites="weibo,qq,qzone,tencent">
     </div>
     <div class="nextinfo">
