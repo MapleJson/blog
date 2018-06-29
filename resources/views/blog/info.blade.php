@@ -1,5 +1,9 @@
 @extends('common/layouts')
 
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/share.min.css') }}">
+@stop
+
 @section('breadSpan')
     自小刺头深草里，而今渐觉出蓬蒿。时人不识凌云木，直待凌云始道高。
 @stop
@@ -30,7 +34,12 @@
             {!! $info->content !!}
         </div>
     </div>
-    <div class="share"></div>
+    <div class="social-share share" data-title="{{ $info->title }}"
+         data-description="{{ $info->summary or $info->title }}"
+         data-image="{{ $info->img }}"
+         data-wechat-qrcode-helper="<p>微信里点“+”，扫一扫</p><p>扫二维码便可将本文分享至朋友圈</p>"
+         data-mobile-sites="weibo,qq,qzone,tencent">
+    </div>
     <div class="nextinfo">
         @if(!empty($pre))
             <p>上一篇：<a href="{{ route("info", $pre->id) }}">{{ $pre->title }}</a></p>
@@ -150,5 +159,6 @@
 @stop
 
 @section('script')
+    <script src="{{ asset('js/social-share.min.js') }}"></script>
     <script src="{{ asset('js/blog.js') }}"></script>
 @stop

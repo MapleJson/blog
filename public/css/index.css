@@ -111,6 +111,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0;}
 .linkbox ul li img { width: 50px; height: 50px; display: block; float: left;}
 .linkbox ul li i h3 {float: left; margin-left: 15px; }
 .infos { float: left; width: 70%; overflow: hidden; background: #FFF; margin: 20px 0 }
+.infos .share {text-align: center}
 .newsview { padding: 0 30px; background: #fff }
 .newsview a { color: #3e8bc7; }
 .intitle { line-height: 40px; height: 40px; font-size: 14px; ; border-bottom: #000 2px solid; }

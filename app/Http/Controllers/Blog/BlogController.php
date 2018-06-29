@@ -113,6 +113,7 @@ class BlogController extends PublicController
         $data['info']       = Blog::getOne($id);
         $data['info']->read += Code::YES;
         $data['info']->save();
+        $data['info']->img = self::uploadImageUrl($data['info']->img);
         /*
          * 上一篇
          */
