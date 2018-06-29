@@ -33,7 +33,12 @@
             <ul>
                 @foreach($propose as $prop)
                     <li>
-                        <b><a href="{{ route("info", $prop->id) }}" target="_blank">{{ $prop->title }}</a></b>
+                        <b>
+                            <a href="{{ route("info", $prop->id) }}" target="_blank">
+                                <span class="text-blue">@if($prop->original === 1)【原创】@else
+                                        【转载】@endif</span>{{ $prop->title }}
+                            </a>
+                        </b>
                         <p><i><img src="{{ $prop->img }}"></i><span>{{ $prop->summary }}</span></p>
                     </li>
                 @endforeach

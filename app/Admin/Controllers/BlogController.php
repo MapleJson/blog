@@ -83,6 +83,7 @@ class BlogController extends PublicController
             $grid->state($this->trans('release'))->switch($this->trans('states'))->sortable();
             $grid->isTop($this->trans('top'))->switch($this->trans('states'));
             $grid->recommend($this->trans('recommend'))->switch($this->trans('states'));
+            $grid->original($this->trans('original'))->switch($this->trans('states'));
             $grid->read($this->trans('read'))->sortable();
             $grid->comments($this->trans('comments'))->sortable();
 
@@ -152,6 +153,10 @@ class BlogController extends PublicController
                 ->rules('required');
             $form->switch('recommend', $this->trans('recommend'))
                 ->default(Code::NO)
+                ->states($this->trans('states'))
+                ->rules('required');
+            $form->switch('original', $this->trans('original'))
+                ->default(Code::YES)
                 ->states($this->trans('states'))
                 ->rules('required');
 

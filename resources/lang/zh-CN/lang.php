@@ -45,6 +45,7 @@ return [
     'isUse'           => "启用",
     'nickname'        => "昵称",
     'whisper'         => "耳语",
+    'original'        => "原创",
 
     'states' => [
         'on'  => [

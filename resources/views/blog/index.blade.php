@@ -20,13 +20,16 @@
                 <li class="layui-anim" data-anim="layui-anim-fadein">
                     @if(!empty($blog->img))
                         <span class="blogpic">
-                    <a href="{{ route("info", $blog->id) }}">
-                        <img src="{{ $blog->img }}">
-                    </a>
-                </span>
+                            <a href="{{ route("info", $blog->id) }}">
+                                <img src="{{ $blog->img }}">
+                            </a>
+                        </span>
                     @endif
                     <h3 class="blogtitle">
-                        <a href="{{ route("info", $blog->id) }}">{{ $blog->title }}</a>
+                        <a href="{{ route("info", $blog->id) }}">
+                            <span class="text-blue">@if($blog->original === 1)【原创】@else
+                                    【转载】@endif</span>{{ $blog->title }}
+                        </a>
                     </h3>
                     <div class="bloginfo">
                         <p>{{ $blog->summary }}</p>
@@ -58,7 +61,12 @@
             <ul>
                 @foreach($propose as $prop)
                     <li>
-                        <b><a href="{{ route("info", $prop->id) }}" target="_blank">{{ $prop->title }}</a></b>
+                        <b>
+                            <a href="{{ route("info", $prop->id) }}" target="_blank">
+                                <span class="text-blue">@if($prop->original === 1)【原创】@else
+                                        【转载】@endif</span>{{ $prop->title }}
+                            </a>
+                        </b>
                         <p><i><img src="{{ $prop->img }}"></i><span>{{ $prop->summary }}</span></p>
                     </li>
                 @endforeach

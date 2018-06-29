@@ -44,7 +44,9 @@
                 </span>
                 @endif
                 <h3 class="blogtitle">
-                    <a href="{{ route("info", $blog->id) }}">{{ $blog->title }}</a>
+                    <a href="{{ route("info", $blog->id) }}">
+                        <span class="text-blue">@if($blog->original === 1)【原创】@else【转载】@endif</span>{{ $blog->title }}
+                    </a>
                 </h3>
                 <div class="bloginfo">
                     <p>{{ $blog->summary }}</p>

@@ -86,6 +86,10 @@ layui.use(["jquery", "form", "layedit", "flow"], function () {
                 , function (data) {
                     var lis = [];
                     layui.each(data.data, function (index, item) {
+                        var original = "【原创】";
+                        if (item.original === 2) {
+                            original = "【转载】";
+                        }
                         var html = '';
                         html += "<li class=\"layui-anim\" data-anim=\"layui-anim-fadein\">";
 
@@ -98,7 +102,7 @@ layui.use(["jquery", "form", "layedit", "flow"], function () {
                         }
 
                         html += "                <h3 class=\"blogtitle\">";
-                        html += "                    <a href=\"/blog/info/" + item.id + "\">" + item.title + "</a>";
+                        html += "                    <a href=\"/blog/info/" + item.id + "\"><span class='text-blue'>" + original + "</span>" + item.title + "</a>";
                         html += "                </h3>";
                         html += "                <div class=\"bloginfo\">";
                         html += "                    <p>" + item.summary + "</p>";

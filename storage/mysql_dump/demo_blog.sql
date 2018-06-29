@@ -260,9 +260,10 @@ CREATE TABLE `blog` (
   `authorEmail` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '作者邮箱',
   `read` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '阅读量',
   `comments` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '评论数',
-  `isTop` tinyint(4) NOT NULL DEFAULT '2' COMMENT '是否置顶 1 置顶 2 不置顶',
-  `recommend` tinyint(4) NOT NULL DEFAULT '2' COMMENT '是否推荐 1 推荐 2 不推荐',
-  `state` tinyint(4) NOT NULL DEFAULT '2' COMMENT '是否展示 1 展示 2 不展示',
+  `isTop` tinyint(4) unsigned NOT NULL DEFAULT '2' COMMENT '是否置顶 1 置顶 2 不置顶',
+  `recommend` tinyint(4) unsigned NOT NULL DEFAULT '2' COMMENT '是否推荐 1 推荐 2 不推荐',
+  `original` tinyint(4) unsigned NOT NULL DEFAULT '1' COMMENT '是否原创 1 是(原创) 2 否(转载)',
+  `state` tinyint(4) unsigned NOT NULL DEFAULT '2' COMMENT '是否展示 1 展示 2 不展示',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -441,6 +442,21 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `users_state_index` (`state`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Table structure for whispers
+-- ----------------------------
+DROP TABLE IF EXISTS `whispers`;
+CREATE TABLE `whispers` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `author` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '作者',
+  `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '内容',
+  `state` tinyint(3) unsigned NOT NULL DEFAULT '2' COMMENT '是否展示 1 展示 2 不展示',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `whispers_state_index` (`state`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 SET FOREIGN_KEY_CHECKS = 1;
