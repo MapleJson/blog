@@ -68,7 +68,7 @@ return [
      */
     'upload' => [
 
-        'disk' => 'admin',
+        'disk' => env("UPLOAD_DISK", 'admin'),
 
         'directory' => [
             'image' => 'images/' . date('Ymd'),
