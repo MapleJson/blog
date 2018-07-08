@@ -85,4 +85,14 @@ class Blog extends PublicModel
 
         return $recommend;
     }
+
+    /**
+     * 增加留言数
+     *
+     * @param $id
+     */
+    public static function incrementComments($id)
+    {
+        self::where('id', $id)->increment('comments', Code::YES);
+    }
 }

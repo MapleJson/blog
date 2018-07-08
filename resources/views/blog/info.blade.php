@@ -74,7 +74,16 @@
                 <textarea name="content" lay-verify="content" id="remarkEditor" placeholder="请输入内容"
                           class="layui-textarea layui-hide"></textarea>
             </div>
-            <div class="layui-form-item" style="text-align: center">
+            <div class="layui-form-item">
+                <a style="margin-right: 20px; color: #00c0ef;" href="{{ route('socialiteLoginForm', 'qq') }}">
+                    <i class="fa fa-qq" style="font-size: 24px"></i>
+                </a>
+                <a style="margin-right: 20px; color: #ff763b;" href="{{ route('socialiteLoginForm', 'weibo') }}">
+                    <i class="fa fa-weibo" style="font-size: 24px"></i>
+                </a>
+                <a style="margin-right: 20px; color: #a837da;" href="{{ route('socialiteLoginForm', 'github') }}">
+                    <i class="fa fa-github" style="font-size: 24px"></i>
+                </a>
                 <button class="layui-btn" lay-submit="addMessage" lay-filter="addMessage">提交评论</button>
             </div>
         </form>
@@ -125,6 +134,15 @@
                                               class="layui-textarea" style="min-height:80px;"></textarea>
                                 </div>
                                 <div class="layui-form-item">
+                                    <a style="margin-right: 10px; color: #00c0ef;" href="{{ route('socialiteLoginForm', 'qq') }}">
+                                        <i class="fa fa-qq" style="font-size: 16px"></i>
+                                    </a>
+                                    <a style="margin-right: 10px; color: #ff763b;" href="{{ route('socialiteLoginForm', 'weibo') }}">
+                                        <i class="fa fa-weibo" style="font-size: 18px"></i>
+                                    </a>
+                                    <a style="margin-right: 10px; color: #a837da;" href="{{ route('socialiteLoginForm', 'github') }}">
+                                        <i class="fa fa-github" style="font-size: 18px"></i>
+                                    </a>
                                     <button class="layui-btn layui-btn-xs" lay-submit="addMessage"
                                             lay-filter="addMessage">提交
                                     </button>

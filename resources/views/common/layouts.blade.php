@@ -42,8 +42,8 @@
                             </li>
                         @else
                             <li class="login-qq">
-                                <a href="{{ route('socialiteLoginForm', 'github') }}"><i
-                                            class="fa fa-github"></i></a>
+                                <a href="{{ route('socialiteLoginForm', 'qq') }}"><i
+                                            class="fa fa-qq"></i></a>
                             </li>
                         @endauth
                     </ul>
@@ -64,8 +64,8 @@
                             </li>
                         @else
                             <li class="login-qq">
-                                <a href="{{ route('socialiteLoginForm', 'github') }}"><i
-                                            class="fa fa-github"></i></a>
+                                <a href="{{ route('socialiteLoginForm', 'qq') }}"><i
+                                            class="fa fa-qq"></i></a>
                             </li>
                         @endauth
                     </ul>
@@ -160,7 +160,6 @@
             </p>
             <p class="copyright">支持登录方式：QQ、GitHub、微博</p>
             <p class="copyright">Copyright © 2018 by {{ $about->siteName or '秋枫阁' }}, All Rights Reserved</p>
-            {{--<script language="javascript" src="https://zgboke.org/hutui.js"></script>--}}
         @show
     </footer>
 </div>
@@ -177,9 +176,9 @@
             bgcolor: "#5EA51B",
             click: function (type) {
                 if (type === 'bar1') {
-                    location.href = '{{ route('socialiteLoginForm', 'qq') }}';
+                    window.open('https://wpa.qq.com/msgrd?v=3&uin={{ $about->qq }}&site=qq&menu=yes');
                 } else if(type === 'bar2') {
-                    location.href = '{{ route('socialiteLoginForm', 'weibo') }}';
+                    window.open('http://service.weibo.com/share/share.php?url={{ route('home') }}&title=秋枫阁-个人网站&pic={{ asset('images/avatar.jpeg') }}&appkey=');
                 }
             }
         });

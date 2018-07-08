@@ -14,4 +14,9 @@ class AboutController extends PublicController
     {
         return $this->responseView('about.index');
     }
+
+    public function hutui()
+    {
+        return $this->responseView('about.hutui');
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Message;
 
+use App\Common\Models\Blog;
 use App\Common\Models\Message;
 use App\Common\PublicController;
 use App\Common\Extensions\Code;
@@ -69,6 +70,7 @@ class MessageController extends PublicController
             Message::$data['articleId'] = Code::EMPTY;
         } else {
             Message::$data['articleId'] = (int)trim($post['articleId']);
+            Blog::incrementComments((int)trim($post['articleId']));
         }
         if (empty($post['parentId'])) {
             Message::$data['parentId'] = Code::EMPTY;

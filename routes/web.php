@@ -46,6 +46,7 @@ Route::get('/loadWhisper', "Whisper\WhisperController@loadWhisper")->name('loadW
 |--------------------------------------------------------------------------
 */
 Route::get('/about', "About\AboutController@about")->name('about');
+Route::get('/hutui', "About\AboutController@hutui")->name('hutui');
 
 /*
 |--------------------------------------------------------------------------

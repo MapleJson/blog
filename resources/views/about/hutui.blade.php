@@ -1,7 +1,7 @@
 @extends('common/layouts')
 
 @section('title')
-    关于我
+    中国博客联盟
 @stop
 
 @section('breadSpan')
@@ -9,15 +9,13 @@
 @stop
 
 @section('breadN2')
-    <a href="{{ route('about') }}" class="n1">关于我</a>
-    <a href="{{ route('hutui') }}" class="n2">中国博客联盟</a>
+    <a href="{{ route('about') }}" class="n2">关于我</a>
+    <a href="{{ route('hutui') }}" class="n1">中国博客联盟</a>
 @stop
 
 @section('article')
     <div class="message-form mt20">
-        <div class="news_infos">
-            {!! $about->content or '' !!}
-        </div>
+        <script language="javascript" src="https://zgboke.org/hutui.js"></script>
     </div>
 @stop
 
