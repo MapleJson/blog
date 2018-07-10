@@ -61,6 +61,8 @@ class CommentController extends PublicController
     {
         return Admin::grid(Message::class, function (Grid $grid) use ($articleId) {
 
+            $grid->resource("/admin/comment");
+
             $grid->model()->where('articleId', $articleId)->orderBy('id', 'desc');
 
             $grid->username($this->trans('commentUser'))->label();
