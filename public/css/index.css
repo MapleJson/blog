@@ -164,7 +164,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0;}
 .gbko .info, .gbko .replycontainer {padding-top: 5px;}
 .gbko .message-content, .gbko .info, .gbko .replycontainer {margin-left: 53px;}
 .gbko .message-content {padding: 2px 0 5px 0;min-height: 30px;font-size: 14px;line-height: 30px;overflow-x: hidden;}
-.gbko .message-content img {display: inline;}
+.whisper img, .gbko .message-content img {display: inline;}
 .gbko .message-content a {color: #01aaed;}
 .gbko .info .username {color: #01aaed;}
 .gbko .info span {padding-right: 5px;}
