@@ -1,7 +1,7 @@
 @extends('common/layouts')
 
 @section('title')
-    耳语
+    秋枫阁-耳语
 @stop
 
 @section('breadSpan')

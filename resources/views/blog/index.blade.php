@@ -1,7 +1,7 @@
 @extends('common/layouts')
 
 @section('title')
-    个人博客
+    秋枫阁-个人博客
 @stop
 
 @section('breadSpan')

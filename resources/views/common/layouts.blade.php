@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>
-        @yield('title', '个人主页')
+        @yield('title', '秋枫阁')
     </title>
     <meta name="keywords" content="{{ $about->keywords or '个人博客,Maple,秋枫阁' }}"/>
     <meta name="description" content="{{ $about->description or '秋枫阁，是一个PHPer记录生活点滴，学习之路的个人网站。' }}"/>

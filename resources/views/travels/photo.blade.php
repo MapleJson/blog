@@ -1,7 +1,7 @@
 @extends('common/layouts')
 
 @section('title')
-    相册
+    秋枫阁-相册
 @stop
 
 @section('css')

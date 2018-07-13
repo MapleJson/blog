@@ -1,5 +1,9 @@
 @extends('common/layouts')
 
+@section('title')
+    秋枫阁-{{ $info->title }}
+@stop
+
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/share.min.css') }}">
 @stop

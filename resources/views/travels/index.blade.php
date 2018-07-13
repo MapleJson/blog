@@ -1,7 +1,7 @@
 @extends('common/layouts')
 
 @section('title')
-    点滴
+    秋枫阁-点滴
 @stop
 
 @section('breadSpan')

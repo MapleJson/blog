@@ -1,7 +1,7 @@
 @extends('common/layouts')
 
 @section('title')
-    关于我
+    秋枫阁-关于我
 @stop
 
 @section('breadSpan')

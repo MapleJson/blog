@@ -1,7 +1,7 @@
 @extends('common/layouts')
 
 @section('title')
-    友情链接
+    秋枫阁-友情链接
 @stop
 
 @section('breadSpan')

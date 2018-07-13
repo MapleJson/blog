@@ -1,7 +1,7 @@
 @extends('common/layouts')
 
 @section('title')
-    中国博客联盟
+    秋枫阁-中国博客联盟
 @stop
 
 @section('breadSpan')

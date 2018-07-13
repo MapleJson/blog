@@ -1,7 +1,7 @@
 @extends('common/layouts')
 
 @section('title')
-    留言
+    秋枫阁-留言
 @stop
 
 @section('breadSpan')
