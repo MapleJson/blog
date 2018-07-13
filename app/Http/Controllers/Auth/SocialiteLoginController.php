@@ -20,8 +20,10 @@ class SocialiteLoginController extends PublicController
     public function redirectToProvider($service)
     {
         if (auth()->check()) {
-            return redirect(route('home'));
+            return redirect(request()->header('Referer'));
         }
+        session(['redirect' => request()->header('Referer')]);
+
         return Socialite::driver($service)->redirect();
     }
 
@@ -37,6 +39,6 @@ class SocialiteLoginController extends PublicController
         $manager = new OAuthManager($service);
         $manager->auth($user);
 
-        return redirect(route('home'));
+        return redirect(session('redirect', route('home')));
     }
 }
