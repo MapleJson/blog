@@ -93,7 +93,7 @@ class PhotoController extends PublicController
      */
     public function upload(Request $request)
     {
-        $files = $request->file('files');
+        $files    = $request->file('files');
         $travelId = $request->get('travelId');
 
         $this->initStorage();
@@ -121,12 +121,12 @@ class PhotoController extends PublicController
 
         foreach ($files as $file) {
             $fileName = $this->generateUniqueName($file);
-            $result = $this->storage->putFileAs($this->path, $file, $fileName);
+            $result   = $this->storage->putFileAs($this->path, $file, $fileName);
             if ($result) {
                 Photo::$data[] = [
-                    'travelId' => $travelId,
-                    'img' => "{$this->path}/{$fileName}",
-                    'state' => Code::YES,
+                    'travelId'        => $travelId,
+                    'img'             => $result,
+                    'state'           => Code::YES,
                     Photo::CREATED_AT => date("Y-m-d H:i:s"),
                     Photo::UPDATED_AT => date("Y-m-d H:i:s"),
                 ];
@@ -145,7 +145,7 @@ class PhotoController extends PublicController
      */
     private function generateUniqueName(UploadedFile $file)
     {
-        return md5(uniqid()).'.'.$file->getClientOriginalExtension();
+        return md5(uniqid()) . '.' . $file->getClientOriginalExtension();
     }
 
     /**
@@ -167,7 +167,7 @@ class PhotoController extends PublicController
 
             $grid->setView('admin.grid.photo', [
                 'uploadAction' => route('uploadPhotos'),
-                'travelId' => $travelId,
+                'travelId'     => $travelId,
             ]);
 
             $grid->disableExport();
@@ -192,7 +192,7 @@ class PhotoController extends PublicController
 
             $form->display('id', 'ID');
 
-            $form->image('img',$this->trans('photos'))
+            $form->image('img', $this->trans('photos'))
                 ->uniqueName()
                 ->rules('required');
 
