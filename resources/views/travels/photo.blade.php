@@ -5,6 +5,7 @@
 @stop
 
 @section('css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/share.min.css') }}">
     <link rel='stylesheet' href='{{ asset('css/baguettebox.min.css') }}' type='text/css' media='all'/>
     <style>
         #baguetteBox-overlay .full-image figcaption {
@@ -13,6 +14,7 @@
             white-space: normal;
             line-height: 2.3
         }
+        article .share {background: #fff;}
     </style>
 @stop
 
@@ -26,9 +28,16 @@
 
 @section('contents')
     <div class="photo-list mt20" id="LAY_photo_load"></div>
+    <div class="social-share share" data-title="相册-{{ $travel->title }}"
+         data-description="{{ $travel->summary }}"
+         data-image="{{ $travel->cover }}"
+         data-wechat-qrcode-helper="<p>微信扫一扫</p><p>然后将本文分享至朋友圈</p>"
+         data-mobile-sites="weibo,qq,qzone,tencent">
+    </div>
 @stop
 
 @section('script')
+    <script src="{{ asset('js/social-share.min.js') }}"></script>
     <script type='text/javascript' src="{{ asset('js/baguettebox.min.js') }}"></script>
     <script type="text/javascript">
         layui.use(['flow', 'jquery'], function () {

@@ -112,7 +112,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0;}
 .linkbox ul li img { width: 50px; height: 50px; display: block; float: left;}
 .linkbox ul li i h3 {float: left; margin-left: 15px; }
 .infos { float: left; width: 70%; overflow: hidden; background: #FFF; margin: 20px 0 }
-.infos .share {text-align: center}
+article .share {text-align: center}
 .newsview { padding: 0 30px; background: #fff }
 .newsview a { color: #3e8bc7; }
 .intitle { line-height: 40px; height: 40px; font-size: 14px; ; border-bottom: #000 2px solid; }
@@ -191,7 +191,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0;}
 /*.meandblog li { background: #f1f1f1; line-height: 30px; margin: 5px 0; padding: 0 0 0 10px; border-radius: 10px; border-top: 2px solid #e2e2e2; text-shadow: #eae7e7 0px 0px 1px; }*/
 /*.meandblog li a:hover { color: #000 }*/
 
-.photo-list {background: #fff;width: 96%;height: 500px;padding: 20px;overflow: auto;text-align: center}
+.photo-list {background: #fff;width: 96%;height: 500px;padding: 24px;overflow: auto;text-align: center}
 .photo-list:after {content: '';display: block;height: 2px;margin: .5em 0 1.4em;background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(77,77,77,1) 50%, rgba(0, 0, 0, 0) 100%);background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(77,77,77,1) 50%, rgba(0, 0, 0, 0) 100%);}
 .photo-list img {height: 100%;margin: 0 auto;}
 .photo-list a {width: 265px;height: 180px;display: inline-block;overflow: hidden;margin: 4px 10px;box-shadow: 0 0 4px -1px #000;}

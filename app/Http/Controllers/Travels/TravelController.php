@@ -45,9 +45,12 @@ class TravelController extends PublicController
      */
     public function photo(int $id)
     {
+        $travel        = Travel::getOne($id);
+        $travel->cover = self::uploadImageUrl($travel->cover);
         return $this->responseView('travels.photo', [
-            'id'    => $id,
-            'limit' => config("siteConfig.photoLoadCount"),
+            'id'     => $id,
+            'travel' => $travel,
+            'limit'  => config("siteConfig.photoLoadCount"),
         ]);
     }
 
