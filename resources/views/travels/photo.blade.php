@@ -31,7 +31,7 @@
     <div class="social-share share" data-title="相册-{{ $travel->title }}"
          data-description="{{ $travel->summary }}"
          data-image="{{ $travel->cover }}"
-         data-wechat-qrcode-helper="<p>微信扫一扫</p><p>然后将本文分享至朋友圈</p>"
+         data-wechat-qrcode-helper="<p>微信扫一扫</p><p>然后将相册分享至朋友圈</p>"
          data-mobile-sites="weibo,qq,qzone,tencent">
     </div>
 @stop
