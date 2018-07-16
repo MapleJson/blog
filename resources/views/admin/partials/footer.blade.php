@@ -5,5 +5,5 @@
         <strong>Version</strong>&nbsp;&nbsp; {!! config('admin.version') !!}
     </div>
     <!-- Default to the left -->
-    <strong>Copyright by <a href="http://52zoe.com" target="_blank">{!! config('siteConfig.siteName') !!}</a></strong>
+    <strong>Copyright by <a href="https://52zoe.com" target="_blank">{!! config('siteConfig.siteName') !!}</a></strong>
 </footer>
