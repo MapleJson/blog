@@ -63,7 +63,8 @@
                             var lis = [];
                             lis.push('<div id="LAY_photo_load_' + page + '">');
                             layui.each(data.data, function (index, item) {
-                                lis.push('<a href="' + item.img + '" title="' + item.summary + '"><img src="' + item.img + '"></a>');
+                                var summary = item.summary ? item.summary : "";
+                                lis.push('<a href="' + item.img + '" title="' + summary + '"><img src="' + item.img + '"></a>');
                             });
                             lis.push('</div>');
                             next(lis.join(''), page < data.pages);
