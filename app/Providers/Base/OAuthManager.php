@@ -65,7 +65,7 @@ class OAuthManager
             'nickname'          => $user->nickname,
             'email'             => $user->email,
             'state'             => Code::ENABLED_STATUS,
-            'avatar'            => $user->avatar,
+            'avatar'            => str_replace("http://", "https://", $user->avatar),
             'password'          => '',
             'confirmationToken' => str_random(40),
         ]);
@@ -89,7 +89,7 @@ class OAuthManager
             'username'   => $username,
             'nickname'   => $user->nickname,
             'email'      => $user->email,
-            'avatar'     => $user->avatar,
+            'avatar'     => str_replace("http://", "https://", $user->avatar),
             'githubId'   => $user->id,
             'githubName' => $user->name,
             'githubUrl'  => $user->user['url'],
@@ -116,7 +116,7 @@ class OAuthManager
             'username' => $username,
             'nickname' => $user->nickname,
             'email'    => $user->email,
-            'avatar'   => $user->avatar,
+            'avatar'   => str_replace("http://", "https://", $user->avatar),
             'wbOpenId' => $user->id,
             'state'    => Code::ENABLED_STATUS,
             'password' => ''
