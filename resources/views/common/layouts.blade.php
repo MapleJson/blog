@@ -169,6 +169,7 @@
 
 <script src="{{ asset('js/nav.js') }}"></script>
 <script src="{{ asset('layui/layui.js') }}"></script>
+<script src="{{ asset('js/love.js') }}"></script>
 <script>
     layui.use("util", function () {
         var util = layui.util;
