@@ -181,7 +181,7 @@
                 if (type === 'bar1') {
                     window.open('https://wpa.qq.com/msgrd?v=3&uin={{ $about->qq }}&site=qq&menu=yes');
                 } else if (type === 'bar2') {
-                    window.open('http://service.weibo.com/share/share.php?url={{ route('home') }}&title=秋枫阁-个人网站&pic={{ asset('images/avatar.jpeg') }}&appkey=');
+                    window.open('https://service.weibo.com/share/share.php?url={{ route('home') }}&title=秋枫阁-个人网站&pic={{ asset('images/avatar.jpeg') }}&appkey=');
                 }
             }
         });
