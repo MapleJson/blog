@@ -57,7 +57,7 @@
                 <div class="layui-input-block">
                     <input type="text" name="domain" autocomplete="off" class="layui-input" lay-verify="required|url"
                            maxLength=100
-                           value="http://">
+                           value="https://">
                 </div>
             </div>
             <div class="layui-form-item">
