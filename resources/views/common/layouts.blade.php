@@ -13,6 +13,7 @@
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @endif
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="alternate" type="application/rss+xml" href="{{ url('rss') }}" title="RSS Feed">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('layui/css/layui.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/base.css') }}">
@@ -160,6 +161,8 @@
                 <a href="https://wpa.qq.com/msgrd?v=3&amp;uin={{ $about->qq }}&amp;site=qq&amp;menu=yes" target="_blank"
                    title="928046320"><i class="fa fa-qq"></i></a>
                 <a href="javascript:void(0)"><i class="fa fa-weixin"></i></a>
+                <a href="{{ route('siteMap') }}" target="_blank"><i class="fa fa-map"></i></a>
+                <a href="{{ route('rss') }}" target="_blank"><i class="fa fa-rss"></i></a>
             </p>
             <p class="copyright">支持登录方式：QQ、GitHub、微博</p>
             <p class="copyright">Copyright © 2018 by {{ $about->siteName or '秋枫阁' }}, All Rights Reserved</p>

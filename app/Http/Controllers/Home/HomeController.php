@@ -6,6 +6,8 @@ use App\Common\Models\Blog;
 use App\Common\Models\Carousel;
 use App\Common\PublicController;
 use App\Common\Extensions\Code;
+use App\Services\RssFeed;
+use App\Services\SiteMap;
 
 class HomeController extends PublicController
 {
@@ -50,5 +52,27 @@ class HomeController extends PublicController
         }
 
         return $this->responseView('home.index', $data);
+    }
+
+    /**
+     * 订阅
+     *
+     * @param RssFeed $feed
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function rss(RssFeed $feed)
+    {
+        $rss = $feed->getRSS();
+
+        return response($rss, 200, [
+            'Content-type' => 'application/rss+xml'
+        ]);
+    }
+
+    public function siteMap(SiteMap $siteMap)
+    {
+        $map = $siteMap->getSiteMap();
+
+        return response($map, 200, ['Content-type' => 'text/xml']);
     }
 }

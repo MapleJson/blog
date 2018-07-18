@@ -12,6 +12,8 @@
 */
 
 Route::get('/', "Home\HomeController@index")->name('home');
+Route::get('/rss', "Home\HomeController@rss")->name('rss');
+Route::get('/siteMap.xml', "Home\HomeController@siteMap")->name('siteMap');
 
 /*
 |--------------------------------------------------------------------------
