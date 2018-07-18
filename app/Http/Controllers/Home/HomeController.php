@@ -62,17 +62,21 @@ class HomeController extends PublicController
      */
     public function rss(RssFeed $feed)
     {
-        $rss = $feed->getRSS();
-
-        return response($rss, 200, [
+        return response($feed->getRSS(), 200, [
             'Content-type' => 'application/rss+xml'
         ]);
     }
 
+    /**
+     * 网站地图
+     *
+     * @param SiteMap $siteMap
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function siteMap(SiteMap $siteMap)
     {
-        $map = $siteMap->getSiteMap();
-
-        return response($map, 200, ['Content-type' => 'text/xml']);
+        return response($siteMap->getSiteMap(), 200, [
+            'Content-type' => 'text/xml'
+        ]);
     }
 }
