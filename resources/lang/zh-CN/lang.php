@@ -46,6 +46,13 @@ return [
     'nickname'        => "昵称",
     'whisper'         => "耳语",
     'original'        => "原创",
+    'reply'           => "回复",
+
+    'formValidateFail' => "提交信息不全",
+    'replyError'       => "回复失败",
+    'replySuccess'     => "回复成功",
+    'siteAdmin'        => "站长",
+
 
     'states' => [
         'on'  => [

@@ -31,6 +31,8 @@ Route::group([
     $router->put('auth/setting', 'AuthController@putSetting');
 
 
+    $router->get('reply/{id}', 'CommentController@replyForm')->name('replyForm');
+    $router->post('reply/{id}', 'CommentController@replySave')->name('replySave');
     $router->get('comment/{articleId?}', 'CommentController@index')->name('showComments');
     $router->get('comment/{id}/edit', 'CommentController@edit')->name('editComment');
     $router->match(['PUT', 'PATCH'], 'comment/{id}', 'CommentController@update')->name('updateComment');
