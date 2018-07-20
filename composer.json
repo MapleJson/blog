@@ -9,6 +9,7 @@
         "encore/laravel-admin": "^1.5",
         "fideloper/proxy": "^4.0",
         "intervention/image": "^2.4",
+        "laravel-admin-ext/media-manager": "^1.0",
         "laravel/framework": "5.6.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
