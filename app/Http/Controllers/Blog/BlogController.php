@@ -152,7 +152,7 @@ class BlogController extends PublicController
          */
         $data['propose'] = Blog::recommendBlog();
 
-        Cookie::queue("detail{$id}", true);
+        Cookie::queue("detail{$id}", true, 1440);
 
         return $this->responseView('blog.info', $data);
     }
