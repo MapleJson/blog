@@ -133,6 +133,7 @@ article .share {text-align: center}
 .news_infos { line-height: 24px; text-align: justify;padding: 30px 0 }
 .news_infos p { margin-bottom: 10px }
 .news_infos img { max-width: 650px; height: auto; display: inline-block; }
+.news_infos blockquote { display: block;border-left: 8px solid #d0e5f2;padding: 5px 10px;margin: 10px 0;line-height: 1.4;font-size: 100%;background-color: #f1f1f1; }
 .share { padding: 20px; }
 .nextinfo { line-height: 24px; width: 90%; background: #FFF; overflow: hidden; margin: 20px 20px; }
 .nextinfo p { padding: 4px 10px; border-radius: 5px; }
