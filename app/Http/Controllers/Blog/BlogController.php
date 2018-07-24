@@ -7,6 +7,7 @@ use App\Common\Models\Message;
 use App\Common\Models\Tag;
 use App\Common\PublicController;
 use App\Common\Extensions\Code;
+use Illuminate\Support\Facades\Cookie;
 
 class BlogController extends PublicController
 {
@@ -110,9 +111,11 @@ class BlogController extends PublicController
          * 文章内容
          */
         Blog::_destroy();
-        $data['info']       = Blog::getOne($id);
-        $data['info']->read += Code::YES;
-        $data['info']->save();
+        $data['info'] = Blog::getOne($id);
+        if (Cookie::get("detail{$id}")) {
+            $data['info']->read += Code::YES;
+            $data['info']->save();
+        }
         $data['info']->img = self::uploadImageUrl($data['info']->img);
         /*
          * 上一篇
@@ -148,6 +151,8 @@ class BlogController extends PublicController
          * 站长推荐
          */
         $data['propose'] = Blog::recommendBlog();
+
+        Cookie::queue("detail{$id}", true);
 
         return $this->responseView('blog.info', $data);
     }
