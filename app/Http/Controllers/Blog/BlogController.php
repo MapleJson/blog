@@ -112,7 +112,7 @@ class BlogController extends PublicController
          */
         Blog::_destroy();
         $data['info'] = Blog::getOne($id);
-        if (Cookie::get("detail{$id}")) {
+        if (!Cookie::has("detail{$id}")) {
             $data['info']->read += Code::YES;
             $data['info']->save();
         }
