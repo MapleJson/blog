@@ -100,9 +100,9 @@ class AppletsController extends PublicController
         Whisper::$limit = $this->getPageOffset(self::limitParam());
         Whisper::$where = ['state' => Code::ENABLED_STATUS];
 
-        $data = Whisper::getList()->toArray();
+        $data = Whisper::getList();
         foreach ($data as &$item) {
-            $item['created_at'] = date("Y年m月d", strtotime((string)$item['created_at']));
+            $item->created_at = date("Y年m月d", strtotime((string)$item->created_at));
         }
 
         /*
