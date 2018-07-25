@@ -77,7 +77,7 @@
 
 @section('aboutUs')
     <div class="about">
-        <div class="avatar"><img src="{{ asset('images/avatar.jpeg') }}" alt=""></div>
+        <div class="avatar"><img src="{{ asset('images/avatar.png') }}" alt=""></div>
         <p class="abname">{{ $about->authorName }}</p>
         <p class="abposition">{{ $about->profession }}</p>
         <div class="abtext">{{ $about->mood or '一个90后草根程序猿！2015年入行。一直潜心研究web后端技术，一边工作一边积累经验，分享一些个人笔记，以及开发经验等心得。' }}</div>

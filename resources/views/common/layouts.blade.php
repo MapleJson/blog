@@ -118,7 +118,7 @@
                     <div class="aboutme">
                         <h2 class="hometitle">关于我</h2>
                         <div class="avatar">
-                            <img src="{{ asset('images/avatar.jpeg') }}">
+                            <img src="{{ asset('images/avatar.png') }}">
                         </div>
                         <div class="ab_con">
                             <p>网名：{{ $about->authorName }} </p>
@@ -185,7 +185,7 @@
                 if (type === 'bar1') {
                     window.open("{{ route('socialiteLoginForm', 'qq') }}");
                 } else if (type === 'bar2') {
-                    window.open('https://service.weibo.com/share/share.php?url={{ route('home') }}&title=秋枫阁-个人网站&pic={{ asset('images/avatar.jpeg') }}&appkey=');
+                    window.open('https://service.weibo.com/share/share.php?url={{ route('home') }}&title=秋枫阁-个人网站&pic={{ asset('images/avatar.png') }}&appkey=');
                 }
             }
         });

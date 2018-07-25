@@ -15,7 +15,7 @@ class LinksTableSeeder extends Seeder
         Link::truncate();
         Link::create([
             'domain'  => "https://52zoe.com",
-            'logo'    => "https://52zoe.com/images/avatar.jpeg",
+            'logo'    => "https://52zoe.com/images/avatar.png",
             'title'   => "秋枫阁",
             'summary' => "秋枫阁，一个PHPer的个人博客。",
             'state'   => 1,
