@@ -12,6 +12,12 @@ class PublicModel extends Model
     use Common;
 
     /**
+     * 本类实例 单例
+     * @var null
+     */
+    private static $_instances = null;
+
+    /**
      * 查询字段
      * @var null
      */
@@ -80,6 +86,8 @@ class PublicModel extends Model
      */
     public static function DBClient()
     {
+        static::$connect = static::$connect ?: self::ORMClient()->connection;
+        static::$DBTable = static::$DBTable ?: self::ORMClient()->table;
         return DB::connection(static::$connect)->table(static::$DBTable);
     }
 
@@ -202,22 +210,29 @@ class PublicModel extends Model
     /**
      * 批量增加数据
      *
+     * @param array $data
      * @return mixed
      */
-    public static function insertToData()
+    public static function insertToData(array $data = [])
     {
-        return self::databaseClient()->insert(self::$data);
+        if (empty($data)) {
+            $data = self::$data;
+        }
+        return self::databaseClient()->insert($data);
     }
 
     /**
-     * DB 执行事务 只支持 bets 库
+     * DB 执行事务 默认 blog 库
+     * 修改 数据库链接 需在调用的模型中定义 $connect
      *
      * @param array ...$args
      * @return bool
+     * @throws \Exception
      */
     public static function transactionForDatabase(...$args)
     {
-        DB::beginTransaction();
+        $DB = DB::connection(static::$connect);
+        $DB->beginTransaction();
         try {
             foreach ($args as $arg) {
                 $execute = false;
@@ -226,7 +241,7 @@ class PublicModel extends Model
                 }
                 switch ($arg['type']) {
                     case 'update' : // 更新
-                        $execute = DB::table($arg['table'])
+                        $execute = $DB->table($arg['table'])
                             ->where($arg['where'])
                             ->update($arg['data']);
                         break;
@@ -234,35 +249,35 @@ class PublicModel extends Model
                         if (empty($arg['data']['created_at'])) {
                             $arg['data']['created_at'] = time();
                         }
-                        $execute = DB::table($arg['table'])
+                        $execute = $DB->table($arg['table'])
                             ->insert($arg['data']);
                         break;
                     case 'delete' : // 删除
-                        $execute = DB::table($arg['table'])
+                        $execute = $DB->table($arg['table'])
                             ->where($arg['where'])
                             ->delete();
                         break;
                     case 'increment' : // 有字段自增更新
-                        $execute = DB::table($arg['table'])
+                        $execute = $DB->table($arg['table'])
                             ->where($arg['where'])
                             ->increment($arg['increment']['column'], $arg['increment']['value'], $arg['data']);
                         break;
                     case 'decrement' : // 有字段自减更新
-                        $execute = DB::table($arg['table'])
+                        $execute = $DB->table($arg['table'])
                             ->where($arg['where'])
                             ->decrement($arg['decrement']['column'], $arg['decrement']['value'], $arg['data']);
                         break;
                 }
                 if (!$execute) {
-                    DB::rollBack();
+                    $DB->rollBack();
                     return false;
                     break;
                 }
             }
-            DB::commit();
+            $DB->commit();
             return true;
         } catch (\Exception $e) {
-            DB::rollBack();
+            $DB->rollBack();
             return false;
         }
     }
@@ -272,6 +287,7 @@ class PublicModel extends Model
      *
      * @param int $id
      * @return mixed
+     * @throws \Exception
      */
     public static function delToData(int $id = Code::EMPTY)
     {
@@ -318,6 +334,31 @@ class PublicModel extends Model
         self::$DBTable = "";
 
         return true;
+    }
+
+    /**
+     * 对象转数组
+     *
+     * @param $object
+     * @return mixed
+     */
+    public static function objectToArray($object) {
+        //先编码成json字符串，再解码成数组
+        return json_decode(json_encode($object), true);
+    }
+
+    /**
+     * 获取此类单例
+     *
+     * @return PublicModel|null
+     */
+    protected static function getInstance()
+    {
+        if (!empty(self::$_instances)) {
+            return self::$_instances;
+        }
+
+        return self::$_instances = new self();
     }
 
 }

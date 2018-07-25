@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +11,13 @@ use Illuminate\Http\Request;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
+/*
+|--------------------------------------------------------------------------
+| 小程序路由
+|--------------------------------------------------------------------------
+*/
+Route::get('/app-loadBlog', "Applets\AppletsController@loadBlog");
+Route::get('/app-travels', "Applets\AppletsController@travels");
+Route::get('/app-loadPhoto', "Applets\AppletsController@loadPhoto");
+Route::get('/app-whisper', "Applets\AppletsController@whisper");
+Route::get('/app-about', "Applets\AppletsController@about");
