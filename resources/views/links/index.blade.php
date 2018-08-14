@@ -98,6 +98,20 @@
             </p>
             <p>
                 <i class="fa fa-check"></i><span>原创优先</span>
+                <i class="fa fa-check"></i><span>https优先</span>
+                <i class="fa fa-check"></i><span>添加我为友链</span>
+            </p>
+            <p>
+                <i style="color: red">我的站点名称：</i><span>{{ $about->siteName or '秋枫阁' }}</span>
+            </p>
+            <p>
+                <i style="color: red">我的链接：</i><span>https://52zoe.com</span>
+            </p>
+            <p>
+                <i style="color: red">我的头像：</i><span>https://52zoe.com/favicon.ico</span>
+            </p>
+            <p>
+                <i style="color: red">我的描述：</i><span>{{ $about->description or '秋枫阁，是一个PHPer记录生活点滴，学习之路的个人网站。' }}</span>
             </p>
             <p>
                 <button class="layui-btn layui-btn-radius layui-btn-warm apply-link">申请友链</button>
