@@ -81,7 +81,7 @@ layui.use(["jquery", "form", "layedit", "flow"], function () {
                 '/loadBlog'
                 , {
                     page: page
-                    , limit: 10
+                    , limit: 5
                 }
                 , function (data) {
                     var lis = [];

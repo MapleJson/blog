@@ -10,7 +10,7 @@ layui.use(["jquery", "flow"], function () {
                 '/loadWhisper'
                 , {
                     page: page
-                    , limit: 5
+                    , limit: 10
                 }
                 , function (data) {
                     var lis = [];
