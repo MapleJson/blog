@@ -9,7 +9,7 @@
     <meta name="keywords" content="{{ $about->keywords or '个人博客,Maple,秋枫阁' }}"/>
     <meta name="description" content="{{ $about->description or '秋枫阁，是一个PHPer记录生活点滴，学习之路的个人网站。' }}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @if(env("SECURE", false))
+    @if(config('app.secure'))
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @endif
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -165,7 +165,7 @@
                 <a href="{{ route('rss') }}" target="_blank"><i class="fa fa-rss"></i></a>
             </p>
             <p class="copyright">支持登录方式：QQ、GitHub、微博</p>
-            <p class="copyright">Copyright © 2018 by {{ $about->siteName or '秋枫阁' }},鄂ICP备18019316号 All Rights Reserved</p>
+            <p class="copyright">Copyright © 2018 by {{ $about->siteName or '秋枫阁' }},<a href="http://www.miitbeian.gov.cn/" target="_blank">鄂ICP备18019316号-1</a> All Rights Reserved</p>
         @show
     </footer>
 </div>
