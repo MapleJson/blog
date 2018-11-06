@@ -39,6 +39,7 @@
                         <li><a href="{{ route('about') }}">关于</a></li>
                         <li><a href="{{ route('message') }}">留言</a></li>
                         <li><a href="{{ route('links') }}">友链</a></li>
+                        <li><a href="http://maplejson.cn" target="_blank">简历</a></li>
                         @auth
                             <li class="login-qq"><a href="{{ route('logout') }}">
                                     <img src="{{ auth()->user()->avatar }}"
@@ -61,6 +62,7 @@
                         <li><a href="{{ route('about') }}">关于</a></li>
                         <li><a href="{{ route('message') }}">留言</a></li>
                         <li><a href="{{ route('links') }}">友链</a></li>
+                        <li><a href="http://maplejson.cn" target="_blank">简历</a></li>
                         @auth
                             <li class="login-qq"><a href="{{ route('logout') }}">
                                     <img src="{{ auth()->user()->avatar }}"
@@ -165,7 +167,8 @@
                 <a href="{{ route('rss') }}" target="_blank"><i class="fa fa-rss"></i></a>
             </p>
             <p class="copyright">支持登录方式：QQ、GitHub、微博</p>
-            <p class="copyright">Copyright © 2018 by {{ $about->siteName or '秋枫阁' }},<a href="http://www.miitbeian.gov.cn/" target="_blank">鄂ICP备18019316号-1</a> All Rights Reserved</p>
+            <p class="copyright">Copyright © 2018 by {{ $about->siteName or '秋枫阁' }},<a
+                        href="http://www.miitbeian.gov.cn/" target="_blank">鄂ICP备18019316号-1</a> All Rights Reserved</p>
         @show
     </footer>
 </div>
