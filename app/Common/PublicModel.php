@@ -48,6 +48,18 @@ class PublicModel extends Model
     public static $groupBy = null;
 
     /**
+     * whereIn条件
+     * @var null
+     */
+    public static $whereIn = [];
+
+    /**
+     * 排序
+     * @var null
+     */
+    public static $orderBy = null;
+
+    /**
      * 实时设置分库链接，用于同一模型使用多库
      * @var string
      */
@@ -63,9 +75,7 @@ class PublicModel extends Model
      * 将时间转换为时间戳格式
      * @var string
      */
-    /*
-     * protected $dateFormat = "U";
-     */
+//    protected $dateFormat = 'U';
 
     /**
      * 用于子类使用何种数据库操作类 ORM DB 两种
@@ -136,15 +146,31 @@ class PublicModel extends Model
     }
 
     /**
+     * 获取原生sql编译后的sql，通过模型调用
+     *
+     * @param string $sql
+     * @return mixed
+     */
+    public static function getRaw($sql = '')
+    {
+        return DB::raw($sql);
+    }
+
+    /**
      * 获取一条数据
+     * 如果id传值为0时必须带有where条件
+     * 否则将会查出错误数据
      *
      * @param int $id
      * @return mixed
      */
-    public static function getOne(int $id = Code::EMPTY)
+    public static function getOne(int $id = Code::ZERO)
     {
         if ($id) {
             return self::databaseClient()->find($id);
+        }
+        if (empty(self::$where)) {
+            return false;
         }
         return self::getSelectInstance()->first();
     }
@@ -155,26 +181,39 @@ class PublicModel extends Model
      * @param int $type
      * @return mixed
      */
-    public static function getList(int $type = Code::EMPTY)
+    public static function getList(int $type = Code::ZERO)
     {
         // 子类重写 调用 返回 ORM 实例
-        if ($type) {
-            // 含分页条件
-            if (self::$limit) {
-                return self::getSelectInstance()->limit(self::$limit['limit'])
-                    ->offset(self::$limit['offset']);
+        $instance = self::getSelectInstance();
+        // 含whereIn
+        if (self::$whereIn) {
+            foreach (self::$whereIn as $column => $where) {
+                $instance = $instance->whereIn($column, $where);
             }
-
-            return self::getSelectInstance();
         }
-
+        // 含分组
+        if (self::$groupBy) {
+            $instance = $instance->groupBy(self::$groupBy);
+        }
+        // 含排序
+        if (self::$orderBy) {
+            if (is_array(self::$orderBy)) {
+                $instance = $instance->orderBy(...self::$orderBy);
+            } else {
+                $instance = $instance->orderByRaw(self::$orderBy);// 原生写法
+            }
+        }
+        // 含分页条件
         if (self::$limit) {
-            return self::getSelectInstance()->limit(self::$limit['limit'])
-                ->offset(self::$limit['offset'])
-                ->get();
+            $instance = $instance->limit(self::$limit['limit'])
+                ->offset(self::$limit['offset']);
         }
 
-        return self::getSelectInstance()->get();
+        if ($type) {
+            return $instance;
+        }
+
+        return $instance->get();
     }
 
     /**
@@ -184,17 +223,45 @@ class PublicModel extends Model
      */
     public static function getListCount()
     {
-        return self::databaseClient()->where(self::$where)->count((new static())->primaryKey);
+        $instance = self::databaseClient();
+        // 含whereIn
+        if (self::$whereIn) {
+            foreach (self::$whereIn as $column => $where) {
+                $instance = $instance->whereIn($column, $where);
+            }
+        }
+        return $instance->where(self::$where)->count(self::ORMClient()->primaryKey);
+    }
+
+    /**
+     * 返回数据集合与数据条数，list($data, $count)接收
+     *
+     * @return array
+     */
+    public static function getDataAndCount()
+    {
+        return [
+            self::getList(),
+            self::getListCount(),
+        ];
     }
 
     /**
      * 修改数据，可批量修改
      *
+     * @param int $whereIn 必须确认为whereIn的时候才可以执行whereIn条件
      * @return mixed
      */
-    public static function editToData()
+    public static function editToData(int $whereIn = Code::ZERO)
     {
-        return self::databaseClient()->where(self::$where)->update(self::$data);
+        self::$field = null;
+        $instance    = self::getSelectInstance();
+        if (self::$whereIn && $whereIn === Code::ONE) {
+            foreach (self::$whereIn as $column => $where) {
+                $instance = $instance->whereIn($column, $where);
+            }
+        }
+        return $instance->update(self::$data);
     }
 
     /**
@@ -216,7 +283,7 @@ class PublicModel extends Model
     public static function insertToData(array $data = [])
     {
         if (empty($data)) {
-            $data = self::$data;
+            return self::databaseClient()->insert(self::$data);
         }
         return self::databaseClient()->insert($data);
     }
@@ -266,6 +333,11 @@ class PublicModel extends Model
                         $execute = $DB->table($arg['table'])
                             ->where($arg['where'])
                             ->decrement($arg['decrement']['column'], $arg['decrement']['value'], $arg['data']);
+                        $result  = $DB->table($arg['table'])->select($arg['decrement']['column'])->where($arg['where'])->first();
+                        if ($result->{$arg['decrement']['column']} < 0.00) {
+                            $execute = false;
+                        }
+                        unset($result);
                         break;
                 }
                 if (!$execute) {
@@ -285,11 +357,11 @@ class PublicModel extends Model
     /**
      * 删除数据
      *
-     * @param int $id
+     * @param int|array $id
      * @return mixed
      * @throws \Exception
      */
-    public static function delToData(int $id = Code::EMPTY)
+    public static function delToData(int $id = Code::ZERO)
     {
         if ($id) {
             return self::databaseClient()->destroy($id);
@@ -305,7 +377,30 @@ class PublicModel extends Model
      */
     public static function getFieldSum($field)
     {
-        return self::databaseClient()->where(self::$where)->sum($field);
+        $instance = self::databaseClient()->where(self::$where);
+        // 含whereIn
+        if (self::$whereIn) {
+            foreach (self::$whereIn as $column => $where) {
+                $instance = $instance->whereIn($column, $where);
+            }
+        }
+        if (self::$limit) {
+            return $instance->limit(self::$limit['limit'])
+                ->offset(self::$limit['offset'])->sum($field);
+        }
+        return $instance->sum($field);
+    }
+
+    /**
+     * 某一个字段自增
+     *
+     * @param $field
+     * @param $num
+     * @return mixed
+     */
+    public static function incrementFiled($field, int $num = Code::ONE)
+    {
+        return self::databaseClient()->where(self::$where)->increment($field, $num);
     }
 
     /**
@@ -318,7 +413,7 @@ class PublicModel extends Model
         if (!empty($property = func_get_args())) {
             foreach ($property as $item) {
                 if ($item === 'connect' || $item === 'DBTable') {
-                    self::$$item = "";
+                    self::$$item = '';
                 } else {
                     self::$$item = [];
                 }
@@ -330,8 +425,11 @@ class PublicModel extends Model
         self::$where   = [];
         self::$limit   = [];
         self::$data    = [];
-        self::$connect = "";
-        self::$DBTable = "";
+        self::$whereIn = [];
+        self::$groupBy = null;
+        self::$orderBy = null;
+        self::$connect = '';
+        self::$DBTable = '';
 
         return true;
     }
@@ -342,7 +440,8 @@ class PublicModel extends Model
      * @param $object
      * @return mixed
      */
-    public static function objectToArray($object) {
+    public static function objectToArray($object)
+    {
         //先编码成json字符串，再解码成数组
         return json_decode(json_encode($object), true);
     }
@@ -352,13 +451,13 @@ class PublicModel extends Model
      *
      * @return PublicModel|null
      */
-    protected static function getInstance()
+    public static function getInstance()
     {
         if (!empty(self::$_instances)) {
             return self::$_instances;
         }
 
-        return self::$_instances = new self();
+        return self::$_instances = new static();
     }
 
 }

@@ -30,6 +30,13 @@ class Code
     const NO    = 2;    // 否
     const EMPTY = 0;    // 空
 
+    const ZERO         = 0;
+    const ONE          = 1;
+    const TWO          = 2;
+    const THREE        = 3;
+    const FOUR         = 4;
+    const SIX          = 6;
+
     const IS_SUCCESSFUL = 1;    // 成功
     const IS_FAILURE    = 2;    // 失败
 
