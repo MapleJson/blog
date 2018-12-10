@@ -63,7 +63,7 @@ class HomeController extends PublicController
     public function rss(RssFeed $feed)
     {
         return response($feed->getRSS(), 200, [
-            'Content-type' => 'application/rss+xml'
+            'Content-type' => 'application/rss+xml;charset=utf-8'
         ]);
     }
 
