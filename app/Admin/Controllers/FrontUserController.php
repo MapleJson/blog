@@ -5,15 +5,15 @@ namespace App\Admin\Controllers;
 use App\Common\Extensions\Code;
 use App\User;
 use App\Common\PublicController;
+use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
-use Encore\Admin\Controllers\ModelForm;
 
 class FrontUserController extends PublicController
 {
-    use ModelForm;
+    use HasResourceActions;
 
     /**
      * Index interface.
@@ -81,7 +81,9 @@ class FrontUserController extends PublicController
             $grid->state($this->trans('isUse'))->switch($this->trans('states'));
 
             $grid->created_at($this->trans('created_at', 'admin'));
-
+            $grid->actions(function (Grid\Displayers\Actions $actions) {
+                $actions->disableView();
+            });
             $grid->disableExport();
             $grid->disableCreateButton();
         });
@@ -95,6 +97,17 @@ class FrontUserController extends PublicController
     protected function form()
     {
         return Admin::form(User::class, function (Form $form) {
+
+            $form->disableCreatingCheck();
+            $form->disableEditingCheck();
+            $form->disableViewCheck();
+            $form->tools(function (Form\Tools $tools) {
+                // 去掉`删除`按钮
+                $tools->disableDelete();
+                // 去掉`查看`按钮
+                $tools->disableView();
+
+            });
 
             $form->display('id', 'ID');
             $form->display('avatar', $this->trans('avatar', 'admin'));

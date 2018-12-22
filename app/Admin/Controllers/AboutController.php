@@ -5,15 +5,15 @@ namespace App\Admin\Controllers;
 use App\Common\Extensions\Code;
 use App\Common\Models\About;
 use App\Common\PublicController;
+use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
-use Encore\Admin\Controllers\ModelForm;
 
 class AboutController extends PublicController
 {
-    use ModelForm;
+    use HasResourceActions;
 
     /**
      * Index interface.
@@ -89,6 +89,7 @@ class AboutController extends PublicController
             $grid->disablePagination();
             $grid->actions(function (Grid\Displayers\Actions $actions) {
                 $actions->disableDelete();
+                $actions->disableView();
             });
         });
     }
@@ -101,6 +102,20 @@ class AboutController extends PublicController
     protected function form()
     {
         return Admin::form(About::class, function (Form $form) {
+
+            $form->disableCreatingCheck();
+            $form->disableEditingCheck();
+            $form->disableViewCheck();
+
+            $form->tools(function (Form\Tools $tools) {
+
+                // 去掉`删除`按钮
+                $tools->disableDelete();
+
+                // 去掉`查看`按钮
+                $tools->disableView();
+
+            });
 
             $form->display('id', 'ID');
 

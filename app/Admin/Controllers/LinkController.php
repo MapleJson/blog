@@ -9,11 +9,11 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
-use Encore\Admin\Controllers\ModelForm;
+use Encore\Admin\Controllers\HasResourceActions;
 
 class LinkController extends PublicController
 {
-    use ModelForm;
+    use HasResourceActions;
 
     /**
      * Index interface.
@@ -86,7 +86,9 @@ class LinkController extends PublicController
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->like('domain', $this->trans('domain'));
             });
-
+            $grid->actions(function (Grid\Displayers\Actions $actions) {
+                $actions->disableView();
+            });
             $grid->disableExport();
         });
     }
@@ -99,6 +101,17 @@ class LinkController extends PublicController
     protected function form()
     {
         return Admin::form(Link::class, function (Form $form) {
+
+            $form->disableCreatingCheck();
+            $form->disableEditingCheck();
+            $form->disableViewCheck();
+            $form->tools(function (Form\Tools $tools) {
+                // 去掉`删除`按钮
+                $tools->disableDelete();
+                // 去掉`查看`按钮
+                $tools->disableView();
+
+            });
 
             $form->display('id', 'ID');
 

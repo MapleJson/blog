@@ -6,17 +6,17 @@ use App\Common\Extensions\Code;
 use App\Common\Models\Blog;
 use App\Common\Models\Message;
 use App\Common\PublicController;
+use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
-use Encore\Admin\Controllers\ModelForm;
 use Encore\Admin\Widgets\Box;
 use Encore\Admin\Widgets\Form as RForm;
 
 class CommentController extends PublicController
 {
-    use ModelForm;
+    use HasResourceActions;
 
     /**
      * Index interface.
@@ -92,6 +92,7 @@ class CommentController extends PublicController
 
             $author = $this->trans("siteAdmin");
             $grid->actions(function (Grid\Displayers\Actions $actions) use ($author) {
+                $actions->disableView();
                 if ($actions->row->username !== $author) {
                     $actions->prepend('<a href="' . route("replyForm", $actions->getKey()) . '"><i class="fa fa-paper-plane"></i></a>');
                 }
@@ -182,6 +183,17 @@ class CommentController extends PublicController
     protected function form()
     {
         return Admin::form(Message::class, function (Form $form) {
+
+            $form->disableCreatingCheck();
+            $form->disableEditingCheck();
+            $form->disableViewCheck();
+            $form->tools(function (Form\Tools $tools) {
+                // 去掉`删除`按钮
+                $tools->disableDelete();
+                // 去掉`查看`按钮
+                $tools->disableView();
+
+            });
 
             $form->display('id', 'ID');
             $form->display('username', $this->trans('commentUser'));

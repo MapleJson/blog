@@ -10,11 +10,11 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
-use Encore\Admin\Controllers\ModelForm;
+use Encore\Admin\Controllers\HasResourceActions;
 
 class UserController extends PublicController
 {
-    use ModelForm;
+    use HasResourceActions;
 
     /**
      * Index interface.
@@ -77,11 +77,11 @@ class UserController extends PublicController
             $grid->updated_at(trans('admin.updated_at'));
 
             $grid->actions(function (Grid\Displayers\Actions $actions) {
+                $actions->disableView();
                 if ($actions->getKey() == 1) {
                     $actions->disableDelete();
                 }
             });
-
             $grid->tools(function (Grid\Tools $tools) {
                 $tools->batch(function (Grid\Tools\BatchActions $actions) {
                     $actions->disableDelete();
@@ -98,6 +98,16 @@ class UserController extends PublicController
     public function form()
     {
         return Administrator::form(function (Form $form) {
+            $form->disableCreatingCheck();
+            $form->disableEditingCheck();
+            $form->disableViewCheck();
+            $form->tools(function (Form\Tools $tools) {
+                // 去掉`删除`按钮
+                $tools->disableDelete();
+                // 去掉`查看`按钮
+                $tools->disableView();
+
+            });
             $form->display('id', 'ID');
 
             $form->text('username', trans('admin.username'))->rules('required');

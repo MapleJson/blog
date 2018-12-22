@@ -9,14 +9,14 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
-use Encore\Admin\Controllers\ModelForm;
+use Encore\Admin\Controllers\HasResourceActions;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends PublicController
 {
-    use ModelForm;
+    use HasResourceActions;
 
     /**
      * @var string
@@ -169,7 +169,9 @@ class PhotoController extends PublicController
                 'uploadAction' => route('uploadPhotos'),
                 'travelId'     => $travelId,
             ]);
-
+            $grid->actions(function (Grid\Displayers\Actions $actions) {
+                $actions->disableView();
+            });
             $grid->disableExport();
             $grid->disableFilter();
             $grid->disableCreateButton();
@@ -185,9 +187,15 @@ class PhotoController extends PublicController
     {
         return Admin::form(Photo::class, function (Form $form) {
 
+            $form->disableCreatingCheck();
+            $form->disableEditingCheck();
+            $form->disableViewCheck();
             $form->tools(function (Form\Tools $tools) {
-                // 去掉跳转列表按钮
-                $tools->disableListButton();
+                // 去掉`删除`按钮
+                $tools->disableDelete();
+                // 去掉`查看`按钮
+                $tools->disableView();
+
             });
 
             $form->display('id', 'ID');

@@ -7,15 +7,15 @@ use App\Common\Extensions\Code;
 use App\Common\Models\Blog;
 use App\Common\Models\Tag;
 use App\Common\PublicController;
+use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
-use Encore\Admin\Controllers\ModelForm;
 
 class BlogController extends PublicController
 {
-    use ModelForm;
+    use HasResourceActions;
 
     /**
      * Index interface.
@@ -91,6 +91,7 @@ class BlogController extends PublicController
 
             $grid->actions(function (Grid\Displayers\Actions $actions) {
                 $actions->prepend(new ShowComments($actions->getKey()));
+                $actions->disableView();
             });
 
             $grid->filter(function (Grid\Filter $filter) {
@@ -120,6 +121,17 @@ class BlogController extends PublicController
     protected function form()
     {
         return Admin::form(Blog::class, function (Form $form) {
+
+            $form->disableCreatingCheck();
+            $form->disableEditingCheck();
+            $form->disableViewCheck();
+            $form->tools(function (Form\Tools $tools) {
+                // 去掉`删除`按钮
+                $tools->disableDelete();
+                // 去掉`查看`按钮
+                $tools->disableView();
+
+            });
 
             $form->display('id', 'ID');
             $form->display('authorName', $this->trans('author'));

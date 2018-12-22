@@ -9,11 +9,11 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
-use Encore\Admin\Controllers\ModelForm;
+use Encore\Admin\Controllers\HasResourceActions;
 
 class WhisperController extends PublicController
 {
-    use ModelForm;
+    use HasResourceActions;
 
     /**
      * Index interface.
@@ -79,7 +79,9 @@ class WhisperController extends PublicController
             $grid->content($this->trans('contents'))->ucfirst()->limit(80);
             $grid->state($this->trans('release'))->switch($this->trans('states'))->sortable();
             $grid->created_at($this->trans('created_at', 'admin'));
-
+            $grid->actions(function (Grid\Displayers\Actions $actions) {
+                $actions->disableView();
+            });
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->like('content', $this->trans('contents'));
             });
@@ -96,7 +98,16 @@ class WhisperController extends PublicController
     protected function form()
     {
         return Admin::form(Whisper::class, function (Form $form) {
+            $form->disableCreatingCheck();
+            $form->disableEditingCheck();
+            $form->disableViewCheck();
+            $form->tools(function (Form\Tools $tools) {
+                // 去掉`删除`按钮
+                $tools->disableDelete();
+                // 去掉`查看`按钮
+                $tools->disableView();
 
+            });
             $form->display('id', 'ID');
             $form->display('author', $this->trans('author'));
 
